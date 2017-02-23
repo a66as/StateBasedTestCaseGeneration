@@ -144,13 +144,13 @@ public interface TransitionTreePackage extends EPackage {
 	int TRANSITION_NODE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Action</b></em>' attribute.
+	 * The feature id for the '<em><b>Lable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION_NODE__ACTION = 0;
+	int TRANSITION_NODE__LABLE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Guard</b></em>' attribute.
@@ -162,13 +162,31 @@ public interface TransitionTreePackage extends EPackage {
 	int TRANSITION_NODE__GUARD = 1;
 
 	/**
+	 * The feature id for the '<em><b>Guard Body</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITION_NODE__GUARD_BODY = 2;
+
+	/**
+	 * The feature id for the '<em><b>Action</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITION_NODE__ACTION = 3;
+
+	/**
 	 * The feature id for the '<em><b>Action Body</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION_NODE__ACTION_BODY = 2;
+	int TRANSITION_NODE__ACTION_BODY = 4;
 
 	/**
 	 * The feature id for the '<em><b>Dest</b></em>' reference.
@@ -177,16 +195,7 @@ public interface TransitionTreePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION_NODE__DEST = 3;
-
-	/**
-	 * The feature id for the '<em><b>Guard Body</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION_NODE__GUARD_BODY = 4;
+	int TRANSITION_NODE__DEST = 5;
 
 	/**
 	 * The number of structural features of the '<em>Transition Node</em>' class.
@@ -195,7 +204,7 @@ public interface TransitionTreePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION_NODE_FEATURE_COUNT = 5;
+	int TRANSITION_NODE_FEATURE_COUNT = 6;
 
 
 	/**
@@ -273,15 +282,15 @@ public interface TransitionTreePackage extends EPackage {
 	EClass getTransitionNode();
 
 	/**
-	 * Returns the meta object for the attribute '{@link TransitionTree.TransitionNode#getAction <em>Action</em>}'.
+	 * Returns the meta object for the attribute '{@link TransitionTree.TransitionNode#getLable <em>Lable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Action</em>'.
-	 * @see TransitionTree.TransitionNode#getAction()
+	 * @return the meta object for the attribute '<em>Lable</em>'.
+	 * @see TransitionTree.TransitionNode#getLable()
 	 * @see #getTransitionNode()
 	 * @generated
 	 */
-	EAttribute getTransitionNode_Action();
+	EAttribute getTransitionNode_Lable();
 
 	/**
 	 * Returns the meta object for the attribute '{@link TransitionTree.TransitionNode#getGuard <em>Guard</em>}'.
@@ -293,6 +302,28 @@ public interface TransitionTreePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTransitionNode_Guard();
+
+	/**
+	 * Returns the meta object for the attribute '{@link TransitionTree.TransitionNode#getGuardBody <em>Guard Body</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Guard Body</em>'.
+	 * @see TransitionTree.TransitionNode#getGuardBody()
+	 * @see #getTransitionNode()
+	 * @generated
+	 */
+	EAttribute getTransitionNode_GuardBody();
+
+	/**
+	 * Returns the meta object for the attribute '{@link TransitionTree.TransitionNode#getAction <em>Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Action</em>'.
+	 * @see TransitionTree.TransitionNode#getAction()
+	 * @see #getTransitionNode()
+	 * @generated
+	 */
+	EAttribute getTransitionNode_Action();
 
 	/**
 	 * Returns the meta object for the attribute '{@link TransitionTree.TransitionNode#getActionBody <em>Action Body</em>}'.
@@ -315,17 +346,6 @@ public interface TransitionTreePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTransitionNode_Dest();
-
-	/**
-	 * Returns the meta object for the attribute '{@link TransitionTree.TransitionNode#getGuardBody <em>Guard Body</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Guard Body</em>'.
-	 * @see TransitionTree.TransitionNode#getGuardBody()
-	 * @see #getTransitionNode()
-	 * @generated
-	 */
-	EAttribute getTransitionNode_GuardBody();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -412,12 +432,12 @@ public interface TransitionTreePackage extends EPackage {
 		EClass TRANSITION_NODE = eINSTANCE.getTransitionNode();
 
 		/**
-		 * The meta object literal for the '<em><b>Action</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Lable</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TRANSITION_NODE__ACTION = eINSTANCE.getTransitionNode_Action();
+		EAttribute TRANSITION_NODE__LABLE = eINSTANCE.getTransitionNode_Lable();
 
 		/**
 		 * The meta object literal for the '<em><b>Guard</b></em>' attribute feature.
@@ -426,6 +446,22 @@ public interface TransitionTreePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TRANSITION_NODE__GUARD = eINSTANCE.getTransitionNode_Guard();
+
+		/**
+		 * The meta object literal for the '<em><b>Guard Body</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRANSITION_NODE__GUARD_BODY = eINSTANCE.getTransitionNode_GuardBody();
+
+		/**
+		 * The meta object literal for the '<em><b>Action</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRANSITION_NODE__ACTION = eINSTANCE.getTransitionNode_Action();
 
 		/**
 		 * The meta object literal for the '<em><b>Action Body</b></em>' attribute feature.
@@ -442,14 +478,6 @@ public interface TransitionTreePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TRANSITION_NODE__DEST = eINSTANCE.getTransitionNode_Dest();
-
-		/**
-		 * The meta object literal for the '<em><b>Guard Body</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TRANSITION_NODE__GUARD_BODY = eINSTANCE.getTransitionNode_GuardBody();
 
 	}
 

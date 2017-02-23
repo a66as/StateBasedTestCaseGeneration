@@ -95,6 +95,8 @@ public class StateMachineReader {
 								System.out.println(((PseudostateImpl) ee).getLabel()+" {ALPHA}");
 								printTransition((PseudostateImpl) ee);
 								//StateNode tree=new StateNode();
+								TreeGen.TreeGen tree_generator=new TreeGen.TreeGen();
+								tree_generator.propagateTree((PseudostateImpl)ee);
 								//tree.propagate((PseudostateImpl) ee);
 							}
 							else if(((PseudostateImpl)ee).getKind()==PseudostateKind.TERMINATE_LITERAL)

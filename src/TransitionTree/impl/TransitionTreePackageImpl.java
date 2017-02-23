@@ -176,7 +176,7 @@ public class TransitionTreePackageImpl extends EPackageImpl implements Transitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTransitionNode_Action() {
+	public EAttribute getTransitionNode_Lable() {
 		return (EAttribute)transitionNodeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -194,7 +194,7 @@ public class TransitionTreePackageImpl extends EPackageImpl implements Transitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTransitionNode_ActionBody() {
+	public EAttribute getTransitionNode_GuardBody() {
 		return (EAttribute)transitionNodeEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -203,8 +203,8 @@ public class TransitionTreePackageImpl extends EPackageImpl implements Transitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransitionNode_Dest() {
-		return (EReference)transitionNodeEClass.getEStructuralFeatures().get(3);
+	public EAttribute getTransitionNode_Action() {
+		return (EAttribute)transitionNodeEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -212,8 +212,17 @@ public class TransitionTreePackageImpl extends EPackageImpl implements Transitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTransitionNode_GuardBody() {
+	public EAttribute getTransitionNode_ActionBody() {
 		return (EAttribute)transitionNodeEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTransitionNode_Dest() {
+		return (EReference)transitionNodeEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -253,11 +262,12 @@ public class TransitionTreePackageImpl extends EPackageImpl implements Transitio
 		createEAttribute(stateNodeEClass, STATE_NODE__TRANSITIONS);
 
 		transitionNodeEClass = createEClass(TRANSITION_NODE);
-		createEAttribute(transitionNodeEClass, TRANSITION_NODE__ACTION);
+		createEAttribute(transitionNodeEClass, TRANSITION_NODE__LABLE);
 		createEAttribute(transitionNodeEClass, TRANSITION_NODE__GUARD);
+		createEAttribute(transitionNodeEClass, TRANSITION_NODE__GUARD_BODY);
+		createEAttribute(transitionNodeEClass, TRANSITION_NODE__ACTION);
 		createEAttribute(transitionNodeEClass, TRANSITION_NODE__ACTION_BODY);
 		createEReference(transitionNodeEClass, TRANSITION_NODE__DEST);
-		createEAttribute(transitionNodeEClass, TRANSITION_NODE__GUARD_BODY);
 	}
 
 	/**
@@ -301,11 +311,12 @@ public class TransitionTreePackageImpl extends EPackageImpl implements Transitio
 		initEAttribute(getStateNode_Transitions(), ecorePackage.getEJavaObject(), "transitions", null, 0, 1, StateNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(transitionNodeEClass, TransitionNode.class, "TransitionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTransitionNode_Action(), ecorePackage.getEString(), "action", null, 0, 1, TransitionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTransitionNode_Lable(), ecorePackage.getEString(), "lable", null, 0, 1, TransitionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransitionNode_Guard(), ecorePackage.getEString(), "guard", null, 0, 1, TransitionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTransitionNode_GuardBody(), ecorePackage.getEString(), "guardBody", null, 0, 1, TransitionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTransitionNode_Action(), ecorePackage.getEString(), "action", null, 0, 1, TransitionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransitionNode_ActionBody(), ecorePackage.getEString(), "actionBody", null, 0, 1, TransitionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransitionNode_Dest(), this.getStateNode(), null, "dest", null, 1, 1, TransitionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTransitionNode_GuardBody(), ecorePackage.getEString(), "guardBody", null, 0, 1, TransitionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
