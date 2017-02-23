@@ -1,3 +1,4 @@
+package statemachinereader;
 import java.io.ObjectInputStream.GetField;
 import java.security.Guard;
 
@@ -66,7 +67,6 @@ public class StateMachineReader {
 			//box=sourcePackage.getLabel()+ " is instance of Package.";
 			//sourcePackage.g
 		}
-		
 		printWhileReading(sourcePackagedElements);
 		//System.out.println("Box: "+ box);
 	}// main end
@@ -94,6 +94,8 @@ public class StateMachineReader {
 							{
 								System.out.println(((PseudostateImpl) ee).getLabel()+" {ALPHA}");
 								printTransition((PseudostateImpl) ee);
+								//StateNode tree=new StateNode();
+								//tree.propagate((PseudostateImpl) ee);
 							}
 							else if(((PseudostateImpl)ee).getKind()==PseudostateKind.TERMINATE_LITERAL)
 							{
