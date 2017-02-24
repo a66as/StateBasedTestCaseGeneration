@@ -40,6 +40,7 @@ import org.eclipse.uml2.uml.internal.impl.StereotypeImpl;
  */
 
 public class StateMachineReader {
+	static TreeGen.TreeGen tree_generator=new TreeGen.TreeGen();
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -95,7 +96,6 @@ public class StateMachineReader {
 								System.out.println(((PseudostateImpl) ee).getLabel()+" {ALPHA}");
 								printTransition((PseudostateImpl) ee);
 								//StateNode tree=new StateNode();
-								TreeGen.TreeGen tree_generator=new TreeGen.TreeGen();
 								tree_generator.propagateTree((PseudostateImpl)ee);
 								//tree.propagate((PseudostateImpl) ee);
 							}
@@ -124,6 +124,7 @@ public class StateMachineReader {
 				}// for each state machine's elements
 			}// if is StateMachine Ended
 		} // foreach element loop ended
+		tree_generator.printTree();
 	}// pleaseDoTheRest ended
 	private static void printTransitions(StateImpl s)
 	{
