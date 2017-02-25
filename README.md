@@ -4,7 +4,7 @@ This repository is a self-containing ready to compile eclipse project.
 
 ### Main package expected to be selected when compiling ###
 
-staterachinereader
+statemachinereader
 
 ### Limitations ###
 
