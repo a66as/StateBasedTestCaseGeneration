@@ -19,7 +19,7 @@ statemachinereader
 * Reading of State Machine
 * Transition Tree Generation
 * Test case Generation according to various criteria (Not Done yet)
-Following are the main functionality of the project:
+>Following are the main functionality of the project:
 
 #### Structural Coverage (Not Done Yet) ####
 * All States Coverage (ASC) (Conformance Suite)
