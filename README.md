@@ -16,9 +16,9 @@ statemachinereader
 * Guards must be satisfied manually.
 
 ### What is Implemented? ###
--Reading of State Machine
--Transition Tree Generation
-- Test case Generation according to various criteria (Not Done yet)
+* Reading of State Machine
+* Transition Tree Generation
+* Test case Generation according to various criteria (Not Done yet)
 Following are the main functionality of the project:
 
 #### Structural Coverage (Not Done Yet) ####
