@@ -89,7 +89,7 @@ public class StateMachineReader extends Frame implements ActionListener,WindowLi
 	            else
 	            {
 	            	JOptionPane.showMessageDialog(null, "ERROR! While loading the model.", "ERROR", JOptionPane.ERROR_MESSAGE);
-	            	//System.exit(0);
+	            	//System.exit(0);....
 	            }
 	         }
 	      });
