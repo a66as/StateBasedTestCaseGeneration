@@ -1,8 +1,13 @@
 package statemachinereader;
+import java.awt.*;        // Using AWT container and component classes
+import java.awt.event.*;  // Using AWT event classes and listener interfaces
 import java.io.ObjectInputStream.GetField;
 import java.security.Guard;
+import java.security.MessageDigest;
 
 import javax.print.attribute.Attribute;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import org.eclipse.core.commands.State;
 import org.eclipse.emf.*;
@@ -41,38 +46,185 @@ import TransitionTree.Tree;
  * @version 1.0
  */
 
-public class StateMachineReader {
+public class StateMachineReader extends Frame implements ActionListener,WindowListener {
 	static Tree tree_generator=null;
+	private Label lblLink;    // Declare a Label component 
+	private TextField tfLink; // Declare a TextField component 
+	private Button btnLoad;   // Declare a Button component
+	private Button btnASC;
+	private Button btnATC;
+	private Button btnPairWise;
+	private Button btnallRoundTrip;
+	private Button btnsneakPath;
+	//private int count = 0;     // Counter's value
+	public StateMachineReader()
+	{
+		setLayout(new FlowLayout());
+        // "super" Frame (a Container) sets its layout to FlowLayout, which arranges
+        // the components from left-to-right, and flow to next row from top-to-bottom.
 
+	     lblLink = new Label("Model Link:");  // construct the Label component
+	     add(lblLink);                    // "super" Frame adds Label
+	
+	     tfLink = new TextField("Models/StateMachine.uml", 30); // construct the TextField component
+	     //tfLink.setEditable(false);       // set to read-only
+	     add(tfLink);                     // "super" Frame adds TextField
+	
+	     btnLoad = new Button("Load and Generate Tree");   // construct the Button component
+	     add(btnLoad);                    // "super" Frame adds Button
+	     btnLoad.addActionListener(new ActionListener() {
+	         @Override
+	         public void actionPerformed(ActionEvent evt) {
+	            if(loadModel(tfLink.getText()))
+	            {
+	            	btnLoad.setEnabled(false);
+		            tfLink.setEnabled(false);
+		            btnASC.setEnabled(true);
+		    	 	btnATC.setEnabled(true);
+		    	 	btnPairWise.setEnabled(true);
+		    	 	btnallRoundTrip.setEnabled(true);
+		    	 	btnsneakPath.setEnabled(true);
+		    	 	JOptionPane.showMessageDialog(null, "Model Loaded, Transition Tree Generated and Printed to Console.", "Loaded", JOptionPane.INFORMATION_MESSAGE);
+	            }
+	            else
+	            {
+	            	JOptionPane.showMessageDialog(null, "ERROR! While loading the model.", "ERROR", JOptionPane.ERROR_MESSAGE);
+	            	//System.exit(0);
+	            }
+	         }
+	      });
+	     btnLoad.addActionListener(this);
+	     
+	     
+	     btnASC = new Button("All State Coverage (Conformance)");   // construct the Button component
+	     add(btnASC);                    // "super" Frame adds Button
+	     btnASC.addActionListener(new ActionListener() {
+	         @Override
+	         public void actionPerformed(ActionEvent evt) {
+	        	 JOptionPane.showMessageDialog(null, "Not yet Implemented (ASC)", "Message", JOptionPane.INFORMATION_MESSAGE);
+	            //loadModel(tfLink.getText());
+	         }
+	      });
+	     btnASC.addActionListener(this);
+	     
+	     
+	     btnATC = new Button("All Transition Coverage");   // construct the Button component
+	     add(btnATC);                    // "super" Frame adds Button
+	     btnATC.addActionListener(new ActionListener() {
+	         @Override
+	         public void actionPerformed(ActionEvent evt) {
+	        	 JOptionPane.showMessageDialog(null, "Not yet Implemented (ATC)", "Message", JOptionPane.INFORMATION_MESSAGE);
+	            //loadModel(tfLink.getText());
+	         }
+	      });
+	     btnATC.addActionListener(this);
+	     
+	     
+	     btnPairWise = new Button("Pairwise 2-Tuple");   // construct the Button component
+	     add(btnPairWise);                    // "super" Frame adds Button
+	     btnPairWise.addActionListener(new ActionListener() {
+	         @Override
+	         public void actionPerformed(ActionEvent evt) {
+	        	 JOptionPane.showMessageDialog(null, "Not yet Implemented (2-Tuple)", "Message", JOptionPane.INFORMATION_MESSAGE);
+	            //loadModel(tfLink.getText());
+	         }
+	      });
+	     btnPairWise.addActionListener(this);
+	     
+	     
+	     
+	     btnallRoundTrip = new Button("All Round-Trip Coverage");   // construct the Button component
+	     add(btnallRoundTrip);                    // "super" Frame adds Button
+	     btnallRoundTrip.addActionListener(new ActionListener() {
+	         @Override
+	         public void actionPerformed(ActionEvent evt) {
+	        	 JOptionPane.showMessageDialog(null, "Not yet Implemented (ARTC)", "Message", JOptionPane.INFORMATION_MESSAGE);
+	            //loadModel(tfLink.getText());
+	         }
+	      });
+	     btnallRoundTrip.addActionListener(this);
+	     
+	     
+	     
+	     btnsneakPath = new Button("Sneak Path Suite");   // construct the Button component
+	     add(btnsneakPath);                    // "super" Frame adds Button
+	     btnsneakPath.addActionListener(new ActionListener() {
+	         @Override
+	         public void actionPerformed(ActionEvent evt) {
+	        	 JOptionPane.showMessageDialog(null, "Not yet Implemented (SneakPath Suite)", "Message", JOptionPane.INFORMATION_MESSAGE);
+	            //loadModel(tfLink.getText());
+	         }
+	      });
+	     btnsneakPath.addActionListener(this);
+	     
+	     
+	     
+	    //btnLoad.setEnabled(false);   // Declare a Button component
+	 	btnASC.setEnabled(false);
+	 	btnATC.setEnabled(false);
+	 	btnPairWise.setEnabled(false);
+	 	btnallRoundTrip.setEnabled(false);
+	 	btnsneakPath.setEnabled(false);
+	        // btnCount is the source object that fires ActionEvent when clicked.
+	        // The source add "this" instance as an ActionEvent listener, which provides
+	        //  an ActionEvent handler called actionPerformed().
+	        // Clicking btnCount invokes actionPerformed().
+	     addWindowListener(this);
+	
+	     setTitle("StateBasedTestCaseGenerator");  // "super" Frame sets its title
+	     setSize(500, 150);        // "super" Frame sets its initial window size
+	
+	     // For inspecting the components/container objects
+	     // System.out.println(this);
+	     // System.out.println(lblCount);
+	     // System.out.println(tfCount);
+	     // System.out.println(btnCount);
+	
+	     setVisible(true);         // "super" Frame shows
+	
+	     // System.out.println(this);
+	     // System.out.println(lblCount);
+	     // System.out.println(tfCount);
+	     // System.out.println(btnCount);
+	}
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		LoadUMLModel umlModel = new LoadUMLModel();
-		String umlFilePath = "Models/StateMachine.uml";
-
-		String uri = null;
-		try {
-			uri = umlModel.getFileURI(umlFilePath);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		Object objModel= umlModel.loadModel(umlFilePath);
-		Model sourceModel;
-		String box="Not Set";
-		EList<PackageableElement> sourcePackagedElements = null;
-		EList<RegionImpl> modelRegions=null;
-		if (objModel instanceof Model) {
-			sourceModel = (Model) objModel;
-			sourcePackagedElements = sourceModel.getPackagedElements();
-			//box=sourcePackagedElements.getClass().toString()+" is instance of Model.";
-		} else if (objModel instanceof Package) {
-			Package sourcePackage = (Package) objModel;
-			sourcePackagedElements = sourcePackage.getPackagedElements();
-			//box=sourcePackage.getLabel()+ " is instance of Package.";
-			//sourcePackage.g
-		}
-		printWhileReading(sourcePackagedElements);
-		//System.out.println("Box: "+ box);
+		//loadModel();
+		StateMachineReader smr= new StateMachineReader();
 	}// main end
+	public static boolean loadModel(String umlFilePath)
+	{
+		// TODO Auto-generated method stub
+				LoadUMLModel umlModel = new LoadUMLModel();
+				//String umlFilePath = "Models/StateMachine.uml";
+
+				String uri = null;
+				Object objModel=null;
+				try {
+					uri = umlModel.getFileURI(umlFilePath);
+					objModel= umlModel.loadModel(umlFilePath);
+				} catch (Exception e) {
+					e.printStackTrace();
+					return false;
+				}
+				
+				Model sourceModel;
+				String box="Not Set";
+				EList<PackageableElement> sourcePackagedElements = null;
+				EList<RegionImpl> modelRegions=null;
+				if (objModel instanceof Model) {
+					sourceModel = (Model) objModel;
+					sourcePackagedElements = sourceModel.getPackagedElements();
+					//box=sourcePackagedElements.getClass().toString()+" is instance of Model.";
+				} else if (objModel instanceof Package) {
+					Package sourcePackage = (Package) objModel;
+					sourcePackagedElements = sourcePackage.getPackagedElements();
+					//box=sourcePackage.getLabel()+ " is instance of Package.";
+					//sourcePackage.g
+				}
+				printWhileReading(sourcePackagedElements);
+				return true;
+				//System.out.println("Box: "+ box);
+	}
 	private static void printWhileReading(EList<PackageableElement> sourcePackagedElements) {
 		
 		for(PackageableElement pe:sourcePackagedElements)
@@ -193,5 +345,45 @@ public class StateMachineReader {
 			System.out.println();
 		}
 
+	}
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowClosing(WindowEvent e) {
+		// TODO Auto-generated method stub
+		System.exit(0);  // Terminate the program
+	}
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
