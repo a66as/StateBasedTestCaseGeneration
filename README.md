@@ -13,8 +13,11 @@ staterachinereader
 * Assumes That the SUT is in the SUT package
 * Assumes That thet SUT.tests is the package for testing.
 * Code instrumentation required.
+* Guards must be satisfied manually.
 
 ### What is Implemented? ###
+
+Following are the main functionality of the project:
 
 #### Structural Coverage ####
 * All States Coverage (ASC) (Conformance Suite)
@@ -23,5 +26,5 @@ staterachinereader
 * All Round-Trip Path Coverage (ARTPC)
 
 #### Suite Coverage ####
-1) Conformance using All (Legal) Transition Coverage (ALTC)
-2) Sneak Path using All (Illegal) Transition Coverage (AITC)
+* Conformance using All (Legal) Transition Coverage (ALTC)
+* Sneak Path using All (Illegal) Transition Coverage (AITC)
