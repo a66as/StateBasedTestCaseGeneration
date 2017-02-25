@@ -16,15 +16,17 @@ statemachinereader
 * Guards must be satisfied manually.
 
 ### What is Implemented? ###
-
+-Reading of State Machine
+-Transition Tree Generation
+- Test case Generation according to various criteria (Not Done yet)
 Following are the main functionality of the project:
 
-#### Structural Coverage ####
+#### Structural Coverage (Not Done Yet) ####
 * All States Coverage (ASC) (Conformance Suite)
 * All (Legal) Transition Coverage (ALTC)
 * All Pairwise Transition Coverage (2-Tuple)
 * All Round-Trip Path Coverage (ARTPC)
 
-#### Suite Coverage ####
+#### Suite Coverage (Not Done Yet) ####
 * Conformance using All (Legal) Transition Coverage (ALTC)
 * Sneak Path using All (Illegal) Transition Coverage (AITC)
