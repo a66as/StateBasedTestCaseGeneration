@@ -30,5 +30,6 @@
 	<classpathentry kind="lib" path="EMF_Lib/org.eclipse.uml2.uml_5.2.0.v20160516-0939.jar"/>
 	<classpathentry kind="lib" path="EMF_Lib/org.eclipse.uml2.uml.profile.standard_1.0.100.v20160516-0939.jar"/>
 	<classpathentry kind="lib" path="EMF_Lib/org.eclipse.uml2.uml.resources_5.2.0.v20160516-0939.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
