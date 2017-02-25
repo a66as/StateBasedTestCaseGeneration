@@ -31,6 +31,8 @@ import org.eclipse.uml2.uml.internal.impl.StateImpl;
 import org.eclipse.uml2.uml.internal.impl.StateMachineImpl;
 import org.eclipse.uml2.uml.internal.impl.StereotypeImpl;
 
+import TransitionTree.Tree;
+
 /**
  * A class that Reads UML State Machine
  * Dependency: EMF_Libs, LoadUMLModel.java By Hassan Sartaj
@@ -40,7 +42,7 @@ import org.eclipse.uml2.uml.internal.impl.StereotypeImpl;
  */
 
 public class StateMachineReader {
-	static TreeGen.TreeGen tree_generator=new TreeGen.TreeGen();
+	static Tree tree_generator=null;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -77,6 +79,7 @@ public class StateMachineReader {
 		{
 			//System.out.println(pe.getClass().toString());
 			System.out.println(pe.getLabel());
+			tree_generator=new Tree(pe.getLabel());
 			System.out.println("-------------------------------------");
 			if(pe instanceof StateMachineImpl) // if is a state
 			{
@@ -96,7 +99,7 @@ public class StateMachineReader {
 								System.out.println(((PseudostateImpl) ee).getLabel()+" {ALPHA}");
 								printTransition((PseudostateImpl) ee);
 								//StateNode tree=new StateNode();
-								tree_generator.propagateTree((PseudostateImpl)ee);
+								tree_generator.initiateTree((PseudostateImpl)ee);
 								//tree.propagate((PseudostateImpl) ee);
 							}
 							else if(((PseudostateImpl)ee).getKind()==PseudostateKind.TERMINATE_LITERAL)
@@ -124,8 +127,9 @@ public class StateMachineReader {
 				}// for each state machine's elements
 			}// if is StateMachine Ended
 		} // foreach element loop ended
+		System.out.println("\n\n------------------ Transition Tree ------------------");
 		tree_generator.printTree();
-	}// pleaseDoTheRest ended
+	}// printWhileReading ended
 	private static void printTransitions(StateImpl s)
 	{
 		for(Transition t:(s).getOutgoings())
