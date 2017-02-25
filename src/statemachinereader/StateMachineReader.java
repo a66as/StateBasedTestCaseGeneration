@@ -102,7 +102,7 @@ public class StateMachineReader extends Frame implements ActionListener,WindowLi
 	         @Override
 	         public void actionPerformed(ActionEvent evt) {
 	        	 JOptionPane.showMessageDialog(null, "Not yet Implemented (ASC)", "Message", JOptionPane.INFORMATION_MESSAGE);
-	            //loadModel(tfLink.getText());
+	            //loadModel(tfLink.getText());..
 	         }
 	      });
 	     btnASC.addActionListener(this);
