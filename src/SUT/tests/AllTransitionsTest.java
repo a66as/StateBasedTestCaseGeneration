@@ -8,7 +8,7 @@ import org.junit.Test;
 public class AllTransitionsTest{
 ThreePlayerGame sut= new ThreePlayerGame(); // alpha is already made
 @Test
-public void testForPath1() {
+public void testForPath17() {
 assertEquals("Game Started", sut.stateReporter());
 sut.p1_Start();
 assertEquals("Player 1 Served", sut.stateReporter());
@@ -19,7 +19,7 @@ assertEquals("Player 2 Served", sut.stateReporter());
 
 }
 @Test
-public void testForPath2() {
+public void testForPath18() {
 sut.p3_WinsVolley();
 assertEquals("Player 3 Served", sut.stateReporter());
 
@@ -27,7 +27,7 @@ assertEquals("Player 3 Served", sut.stateReporter());
 
 }
 @Test
-public void testForPath3() {
+public void testForPath19() {
 /* for Guard false */
 sut.p1_WinsVolley();
 assertEquals("Player 1 Served", sut.stateReporter()); // should be in same state
@@ -39,7 +39,7 @@ assertEquals("Player 1 Won", sut.stateReporter());
 
 }
 @Test
-public void testForPath4() {
+public void testForPath20() {
 sut.dtor();
 assertEquals("T", sut.stateReporter());
 
@@ -47,7 +47,7 @@ assertEquals("T", sut.stateReporter());
 
 }
 @Test
-public void testForPath5() {
+public void testForPath21() {
 /* for Guard false */
 sut.p1_WinsVolley();
 assertEquals("Player 1 Served", sut.stateReporter()); // should be in same state
@@ -57,7 +57,7 @@ assertEquals("Player 1 Served", sut.stateReporter()); // should be in same state
 
 }
 @Test
-public void testForPath6() {
+public void testForPath22() {
 sut.p3_Start();
 assertEquals("Player 3 Served", sut.stateReporter());
 sut.p1_WinsVolley();
@@ -67,7 +67,7 @@ assertEquals("Player 1 Served", sut.stateReporter());
 
 }
 @Test
-public void testForPath7() {
+public void testForPath23() {
 sut.p2_WinsVolley();
 assertEquals("Player 2 Served", sut.stateReporter());
 
@@ -75,7 +75,7 @@ assertEquals("Player 2 Served", sut.stateReporter());
 
 }
 @Test
-public void testForPath8() {
+public void testForPath24() {
 /* for Guard false */
 sut.p3_WinsVolley();
 assertEquals("Player 3 Served", sut.stateReporter()); // should be in same state
@@ -87,7 +87,7 @@ assertEquals("Player 3 Won", sut.stateReporter());
 
 }
 @Test
-public void testForPath9() {
+public void testForPath25() {
 sut.dtor();
 assertEquals("T", sut.stateReporter());
 
@@ -95,7 +95,7 @@ assertEquals("T", sut.stateReporter());
 
 }
 @Test
-public void testForPath10() {
+public void testForPath26() {
 /* for Guard false */
 sut.p3_WinsVolley();
 assertEquals("Player 3 Served", sut.stateReporter()); // should be in same state
@@ -105,7 +105,7 @@ assertEquals("Player 3 Served", sut.stateReporter()); // should be in same state
 
 }
 @Test
-public void testForPath11() {
+public void testForPath27() {
 sut.p2_Start();
 assertEquals("Player 2 Served", sut.stateReporter());
 sut.p1_WinsVolley();
@@ -115,7 +115,7 @@ assertEquals("Player 1 Served", sut.stateReporter());
 
 }
 @Test
-public void testForPath12() {
+public void testForPath28() {
 sut.p3_WinsVolley();
 assertEquals("Player 3 Served", sut.stateReporter());
 
@@ -123,7 +123,7 @@ assertEquals("Player 3 Served", sut.stateReporter());
 
 }
 @Test
-public void testForPath13() {
+public void testForPath29() {
 /* for Guard false */
 sut.p2_WinsVolley();
 assertEquals("Player 2 Served", sut.stateReporter()); // should be in same state
@@ -137,7 +137,7 @@ assertEquals("Player 2 Won", sut.stateReporter()); // should be in same state
 
 }
 @Test
-public void testForPath14() {
+public void testForPath30() {
 sut.dtor();
 assertEquals("T", sut.stateReporter());
 
@@ -145,7 +145,7 @@ assertEquals("T", sut.stateReporter());
 
 }
 @Test
-public void testForPath15() {
+public void testForPath31() {
 /* for Guard false */
 sut.p2_WinsVolley();
 assertEquals("Player 2 Served", sut.stateReporter()); // should be in same state
@@ -155,7 +155,7 @@ assertEquals("Player 2 Served", sut.stateReporter()); // should be in same state
 
 }
 @Test
-public void testForPath16() {
+public void testForPath32() {
 }
 
 }
