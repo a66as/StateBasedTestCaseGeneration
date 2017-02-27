@@ -5,6 +5,7 @@
  */
 package TransitionTree;
 
+import java.util.Queue;
 import java.util.Stack;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -28,7 +29,7 @@ public class Tree {
 	public StateNode root;
 	private String CUT;
 	EList<StateNode> visited=new BasicEList<StateNode>();
-	Stack<TransitionNode> nodesStack=new Stack<TransitionNode>();
+	org.eclipse.core.internal.jobs.Queue x= new org.eclipse.core.internal.jobs.Queue();
 	EList<StateNode> visited2=new BasicEList<StateNode>();
 	public Tree(String cls)
 	{
@@ -83,7 +84,7 @@ public class Tree {
 	public void growTheTree(StateNode s)
 	{
 		StateImpl stateObj=(StateImpl)(s.stateObj);
-		if(stateObj.getOutgoings().size()==0 || isVisited(s) || inTree(s))
+		if(stateObj.getOutgoings().size()==0 || isVisited(s) )//|| inTree(s)
 		{
 			return;
 		}
@@ -126,9 +127,14 @@ public class Tree {
 		} // for each transition ended
 		s.transitions=transitions;
 		visited.add(s);
+		//visited2.add(s);
 		for(TransitionNode tn:s.transitions){
-			growTheTree(tn.target);
-			visited2.add(tn.target);
+			//visited2.add(tn.target);
+			x.enqueue(tn.target);
+		}
+		while(!x.isEmpty())
+		{
+			growTheTree((StateNode)x.dequeue());
 		}
 			
 	}
@@ -152,6 +158,20 @@ public class Tree {
 			
 		return false;
 	}
+	public boolean seeInDepth(StateNode src, StateNode victim)
+	{
+		if(src.name==victim.name)
+			return true;
+		else
+		{
+			System.out.println(src.name);
+			for(TransitionNode t:src.transitions)
+				return seeInDepth(t.target,victim);
+		}
+		return false;
+		
+		
+	}
 	public void printTree()
 	{
 		System.out.println(root.name);
@@ -159,9 +179,9 @@ public class Tree {
 		for(TransitionNode t:root.transitions)
 		{
 			if(!t.isGuarded)
-				System.out.println("|__"+t.name+"/"+t.effect+"--"+"-->"+t.target.name);
+				System.out.println("|__"+t.name+"/"+t.effect+"--"+"-->"+t.target.name+"[further nodes:"+t.target.transitions.size()+"]");
 			else
-				System.out.println("|__"+t.name+"/"+t.effect+"--"+t.guardBody.replace("\n", " ")+"--> *"+t.target.name);
+				System.out.println("|__"+t.name+"/"+t.effect+"--"+t.guardBody.replace("\n", " ")+"--> *"+t.target.name+"[further nodes:"+t.target.transitions.size()+"]");
 		}
 		for(TransitionNode t:newts)
 			printNode(t.target);
@@ -175,9 +195,9 @@ public class Tree {
 		for(TransitionNode t:s.transitions)
 		{
 			if(!t.isGuarded)
-				System.out.println("|__"+t.name+"/"+t.effect+"--"+"-->"+t.target.name);//+"[size:"+t.target.transitions.size());
+				System.out.println("|__"+t.name+"/"+t.effect+"--"+"-->"+t.target.name+"[further nodes:"+t.target.transitions.size()+"]");
 			else
-				System.out.println("|__"+t.name+"/"+t.effect+"--"+t.guardBody.replace("\n", " ")+"--> *"+t.target.name);//+"[size:"+t.target.transitions.size());
+				System.out.println("|__"+t.name+"/"+t.effect+"--"+t.guardBody.replace("\n", " ")+"--> *"+t.target.name+"[further nodes:"+t.target.transitions.size()+"]");
 		}
 		for(TransitionNode t:s.transitions)
 			printNode(t.target);
@@ -189,7 +209,7 @@ public class Tree {
 		int testCaseCount=1;
 		visited=null;
 		visited= new BasicEList<StateNode>();
-		TestCaseTemplate tc1= new TestCaseTemplate(CUT, "testCase"+testCaseCount++);
+		TestCaseTemplate tc1= new TestCaseTemplate(CUT, "AllTransitionsTest");
 		tc1.body.add("ThreePlayerGame sut= new ThreePlayerGame(); // alpha is already made");
 		tc1.body.add("@Test");
 		tc1.body.add("public void testCase"+testCaseCount+"() {");

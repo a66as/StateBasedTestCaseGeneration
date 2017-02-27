@@ -67,7 +67,7 @@ public class StateMachineReader extends Frame implements ActionListener,WindowLi
 	     add(lblLink);                    // "super" Frame adds Label
 	
 	     tfLink = new TextField("Models/StateMachine.uml", 30); // construct the TextField component
-	     //tfLink.setEditable(false);       // set to read-only
+	     tfLink.setEditable(false);       // set to read-only
 	     add(tfLink);                     // "super" Frame adds TextField
 	
 	     btnLoad = new Button("Load and Generate Tree");   // construct the Button component
@@ -79,11 +79,11 @@ public class StateMachineReader extends Frame implements ActionListener,WindowLi
 	            {
 	            	btnLoad.setEnabled(false);
 		            tfLink.setEnabled(false);
-		            //btnASC.setEnabled(true);
+		            btnASC.setEnabled(true);
 		    	 	btnATC.setEnabled(true);
-		    	 	//btnPairWise.setEnabled(true);
-		    	 	//btnallRoundTrip.setEnabled(true);
-		    	 	//btnsneakPath.setEnabled(true);
+		    	 	btnPairWise.setEnabled(true);
+		    	 	btnallRoundTrip.setEnabled(true);
+		    	 	btnsneakPath.setEnabled(true);
 		    	 	JOptionPane.showMessageDialog(null, "Model Loaded, Transition Tree Generated and Printed to Console.", "Loaded", JOptionPane.INFORMATION_MESSAGE);
 	            }
 	            else
@@ -96,16 +96,16 @@ public class StateMachineReader extends Frame implements ActionListener,WindowLi
 	     btnLoad.addActionListener(this);
 	     
 	     
-	     //btnASC = new Button("All State Coverage (Conformance)");   // construct the Button component
-	     //add(btnASC);                    // "super" Frame adds Button
-	     //btnASC.addActionListener(new ActionListener() {
-	        // @Override
-	        // public void actionPerformed(ActionEvent evt) {
-	        	// JOptionPane.showMessageDialog(null, "Not yet Implemented (ASC)", "Message", JOptionPane.INFORMATION_MESSAGE);
+	     btnASC = new Button("All State Coverage (Conformance)");   // construct the Button component
+	     add(btnASC);                    // "super" Frame adds Button
+	     btnASC.addActionListener(new ActionListener() {
+	         @Override
+	         public void actionPerformed(ActionEvent evt) {
+	        	 JOptionPane.showMessageDialog(null, "Not yet Implemented (ASC)", "Message", JOptionPane.INFORMATION_MESSAGE);
 	            //loadModel(tfLink.getText());..
-	        // }
-	     // });
-	    // btnASC.addActionListener(this);
+	         }
+	      });
+	     btnASC.addActionListener(this);
 	     
 	     
 	     btnATC = new Button("All Transition Coverage");   // construct the Button component
@@ -122,51 +122,51 @@ public class StateMachineReader extends Frame implements ActionListener,WindowLi
 	     btnATC.addActionListener(this);
 	     
 	     
-	     //btnPairWise = new Button("Pairwise 2-Tuple");   // construct the Button component
-	     //add(btnPairWise);                    // "super" Frame adds Button
-	     //btnPairWise.addActionListener(new ActionListener() {
-	        // @Override
-	        // public void actionPerformed(ActionEvent evt) {
-	        	 //JOptionPane.showMessageDialog(null, "Not yet Implemented (2-Tuple)", "Message", JOptionPane.INFORMATION_MESSAGE);
+	     btnPairWise = new Button("Pairwise 2-Tuple");   // construct the Button component
+	     add(btnPairWise);                    // "super" Frame adds Button
+	     btnPairWise.addActionListener(new ActionListener() {
+	         @Override
+	         public void actionPerformed(ActionEvent evt) {
+	        	 JOptionPane.showMessageDialog(null, "Not yet Implemented (2-Tuple)", "Message", JOptionPane.INFORMATION_MESSAGE);
+	            loadModel(tfLink.getText());
+	         }
+	      });
+	     btnPairWise.addActionListener(this);
+	     
+	     
+	     
+	     btnallRoundTrip = new Button("All Round-Trip Coverage");   // construct the Button component
+	     add(btnallRoundTrip);                    // "super" Frame adds Button
+	     btnallRoundTrip.addActionListener(new ActionListener() {
+	         @Override
+	         public void actionPerformed(ActionEvent evt) {
+	        	 JOptionPane.showMessageDialog(null, "Not yet Implemented (ARTC)", "Message", JOptionPane.INFORMATION_MESSAGE);
 	            //loadModel(tfLink.getText());
-	         //}
-	     // });
-	     //btnPairWise.addActionListener(this);
+	         }
+	      });
+	    btnallRoundTrip.addActionListener(this);
 	     
 	     
 	     
-	     //btnallRoundTrip = new Button("All Round-Trip Coverage");   // construct the Button component
-	     //add(btnallRoundTrip);                    // "super" Frame adds Button
-	     //btnallRoundTrip.addActionListener(new ActionListener() {
-	      //   @Override
-	       //  public void actionPerformed(ActionEvent evt) {
-	        	// JOptionPane.showMessageDialog(null, "Not yet Implemented (ARTC)", "Message", JOptionPane.INFORMATION_MESSAGE);
+	     btnsneakPath = new Button("Sneak Path Suite");   // construct the Button component
+	     add(btnsneakPath);                    // "super" Frame adds Button
+	     btnsneakPath.addActionListener(new ActionListener() {
+	         @Override
+	         public void actionPerformed(ActionEvent evt) {
+	        	 JOptionPane.showMessageDialog(null, "Not yet Implemented (SneakPath Suite)", "Message", JOptionPane.INFORMATION_MESSAGE);
 	            //loadModel(tfLink.getText());
-	        // }
-	      //});
-	     //btnallRoundTrip.addActionListener(this);
-	     
-	     
-	     
-	     //btnsneakPath = new Button("Sneak Path Suite");   // construct the Button component
-	    // add(btnsneakPath);                    // "super" Frame adds Button
-	     //btnsneakPath.addActionListener(new ActionListener() {
-	      //   @Override
-	       //  public void actionPerformed(ActionEvent evt) {
-	       // 	 JOptionPane.showMessageDialog(null, "Not yet Implemented (SneakPath Suite)", "Message", JOptionPane.INFORMATION_MESSAGE);
-	            //loadModel(tfLink.getText());
-	      //   }
-	     // });
-	    // btnsneakPath.addActionListener(this);
+	         }
+	      });
+	     btnsneakPath.addActionListener(this);
 	     
 	     
 	     
 	    //btnLoad.setEnabled(false);   // Declare a Button component
-	 	//btnASC.setEnabled(false);
+	 	btnASC.setEnabled(false);
 	 	btnATC.setEnabled(false);
-	 	//btnPairWise.setEnabled(false);
-	 	//btnallRoundTrip.setEnabled(false);
-	 	//btnsneakPath.setEnabled(false);
+	 	btnPairWise.setEnabled(false);
+	 	btnallRoundTrip.setEnabled(false);
+	 	btnsneakPath.setEnabled(false);
 	        // btnCount is the source object that fires ActionEvent when clicked.
 	        // The source add "this" instance as an ActionEvent listener, which provides
 	        //  an ActionEvent handler called actionPerformed().
