@@ -18,10 +18,10 @@ statemachinereader
 ### What is Implemented? ###
 * Reading of State Machine
 * Transition Tree Generation
-* Test case Generation according to various criteria (Not Done yet)
+* Test case Generation according to various criteria
 #### Following are the main functionalities of the project: ####
 
 ##### Junit4 Test Case Generation for #####
 * All (Legal) Transition Coverage (ALTC)
 * All Round-Trip Path Coverage (ARTPC) (Not Done)
-* Sneak Path Suite
+* Sneak Path Suite (Not Done)
