@@ -28,6 +28,7 @@ import Templates.TestCaseTemplate;
 public class Tree {
 	public StateNode root;
 	private String CUT;
+	int count=1;
 	EList<StateNode> visited=new BasicEList<StateNode>();
 	org.eclipse.core.internal.jobs.Queue x= new org.eclipse.core.internal.jobs.Queue();
 	EList<StateNode> visited2=new BasicEList<StateNode>();
@@ -206,13 +207,13 @@ public class Tree {
 	public void allTransitionsSuite()
 	{
 		StateNode r=root;
-		int testCaseCount=1;
 		visited=null;
 		visited= new BasicEList<StateNode>();
 		TestCaseTemplate tc1= new TestCaseTemplate(CUT, "AllTransitionsTest");
 		tc1.body.add("ThreePlayerGame sut= new ThreePlayerGame(); // alpha is already made");
 		tc1.body.add("@Test");
-		tc1.body.add("public void testCase"+testCaseCount+"() {");
+		tc1.body.add("public void testForPath"+count+"() {");
+		count++;
 		if(root.transitions.size()==1)
 		{
 			TransitionNode temp=root.transitions.get(0);
@@ -238,7 +239,10 @@ public class Tree {
 		if(s.transitions.size()==0)
 		{
 			tc.body.add("\n /********** TC Completed *************/\n");
-			//tc.body.add("}");
+			tc.body.add("}");
+			tc.body.add("@Test");
+			tc.body.add("public void testForPath"+count+"() {");
+			count++;
 			return;
 		}
 		visited.add(s);
