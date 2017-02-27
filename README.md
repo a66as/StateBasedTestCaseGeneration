@@ -18,15 +18,10 @@ statemachinereader
 ### What is Implemented? ###
 * Reading of State Machine
 * Transition Tree Generation
-* Test case Generation according to various criteria (Not Done yet)
+* Test case Generation according to various criteria
 #### Following are the main functionalities of the project: ####
 
-##### Structural Coverage (Not Done Yet) #####
-* All States Coverage (ASC) (Conformance Suite)
+##### Junit4 Test Case Generation for #####
 * All (Legal) Transition Coverage (ALTC)
-* All Pairwise Transition Coverage (2-Tuple)
-* All Round-Trip Path Coverage (ARTPC)
-
-##### Suite Coverage (Not Done Yet) #####
-* Conformance using All (Legal) Transition Coverage (ALTC)
-* Sneak Path using All (Illegal) Transition Coverage (AITC)
+* All Round-Trip Path Coverage (ARTPC) (Not Done)
+* Sneak Path Suite (Not Done)
