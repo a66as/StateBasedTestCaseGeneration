@@ -130,7 +130,10 @@ public class TwoPlayerGame {
 		return p2_points;
 	}
 	
-	
+	public void simulateVolley()
+	{
+		System.out.println("simulateVolley() Called");
+	}
 	
 	
 	/*

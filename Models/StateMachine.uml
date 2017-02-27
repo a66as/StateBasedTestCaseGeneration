@@ -166,9 +166,9 @@
           <body>return TRUE;</body>
         </effect>
       </transition>
-      <transition xmi:id="_WUfE5-3DEea3nMjCaDRJ-w" name="~()" source="_WUfEr-3DEea3nMjCaDRJ-w" target="_WUfEsu3DEea3nMjCaDRJ-w"/>
-      <transition xmi:id="_WUfE6O3DEea3nMjCaDRJ-w" name="~()" source="_WUfEsO3DEea3nMjCaDRJ-w" target="_WUfEsu3DEea3nMjCaDRJ-w"/>
-      <transition xmi:id="_WUfE6e3DEea3nMjCaDRJ-w" name="~()" source="_WUfEse3DEea3nMjCaDRJ-w" target="_WUfEsu3DEea3nMjCaDRJ-w"/>
+      <transition xmi:id="_WUfE5-3DEea3nMjCaDRJ-w" name="dtor()" source="_WUfEr-3DEea3nMjCaDRJ-w" target="_WUfEsu3DEea3nMjCaDRJ-w"/>
+      <transition xmi:id="_WUfE6O3DEea3nMjCaDRJ-w" name="dtor()" source="_WUfEsO3DEea3nMjCaDRJ-w" target="_WUfEsu3DEea3nMjCaDRJ-w"/>
+      <transition xmi:id="_WUfE6e3DEea3nMjCaDRJ-w" name="dtor()" source="_WUfEse3DEea3nMjCaDRJ-w" target="_WUfEsu3DEea3nMjCaDRJ-w"/>
     </region>
   </packagedElement>
   <profileApplication xmi:id="_WUfE6u3DEea3nMjCaDRJ-w">
