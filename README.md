@@ -11,7 +11,7 @@ statemachinereader
 * Will deal with only first region of the state machine.
 * History, Deep History, Decision Pseudo States may Cause an Exception.
 * Assumes That the SUT is in the SUT package
-* Assumes That thet SUT.tests is the package for testing.
+* Assumes That that SUT.tests is the package for testing.
 * Code instrumentation required.
 * Guards must be satisfied manually.
 
@@ -22,6 +22,6 @@ statemachinereader
 #### Following are the main functionalities of the project: ####
 
 ##### Junit4 Test Case Generation for #####
-* All (Legal) Transition Coverage (ALTC)
+* All (Legal) Transitions Coverage (ALTC)
 * All Round-Trip Path Coverage (ARTPC) (Not Done)
 * Sneak Path Suite (Not Done)
