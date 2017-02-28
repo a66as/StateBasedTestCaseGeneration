@@ -51,9 +51,8 @@ public class StateMachineReader extends Frame implements ActionListener,WindowLi
 	private Label lblLink;    // Declare a Label component 
 	private TextField tfLink; // Declare a TextField component 
 	private Button btnLoad;   // Declare a Button component
-	private Button btnASC;
 	private Button btnATC;
-	private Button btnPairWise;
+	private Label lblGenerate;
 	private Button btnallRoundTrip;
 	private Button btnsneakPath;
 	//private int count = 0;     // Counter's value
@@ -79,11 +78,9 @@ public class StateMachineReader extends Frame implements ActionListener,WindowLi
 	            {
 	            	btnLoad.setEnabled(false);
 		            tfLink.setEnabled(false);
-		            btnASC.setEnabled(true);
 		    	 	btnATC.setEnabled(true);
-		    	 	btnPairWise.setEnabled(true);
-		    	 	btnallRoundTrip.setEnabled(true);
-		    	 	btnsneakPath.setEnabled(true);
+		    	 	btnallRoundTrip.setEnabled(false);
+		    	 	btnsneakPath.setEnabled(false);
 		    	 	JOptionPane.showMessageDialog(null, "Model Loaded, Transition Tree Generated and Printed to Console.", "Loaded", JOptionPane.INFORMATION_MESSAGE);
 	            }
 	            else
@@ -96,19 +93,10 @@ public class StateMachineReader extends Frame implements ActionListener,WindowLi
 	     btnLoad.addActionListener(this);
 	     
 	     
-	     btnASC = new Button("All State Coverage (Conformance)");   // construct the Button component
-	     add(btnASC);                    // "super" Frame adds Button
-	     btnASC.addActionListener(new ActionListener() {
-	         @Override
-	         public void actionPerformed(ActionEvent evt) {
-	        	 JOptionPane.showMessageDialog(null, "Not yet Implemented (ASC)", "Message", JOptionPane.INFORMATION_MESSAGE);
-	            //loadModel(tfLink.getText());..
-	         }
-	      });
-	     btnASC.addActionListener(this);
 	     
-	     
-	     btnATC = new Button("All Transition Coverage");   // construct the Button component
+	     lblGenerate = new Label("Generate:\n");  // construct the Label component
+	     add(lblGenerate); 
+	     btnATC = new Button("All Transitions coverage Suite");   // construct the Button component
 	     add(btnATC);                    // "super" Frame adds Button
 	     btnATC.addActionListener(new ActionListener() {
 	         @Override
@@ -122,24 +110,13 @@ public class StateMachineReader extends Frame implements ActionListener,WindowLi
 	     btnATC.addActionListener(this);
 	     
 	     
-	     btnPairWise = new Button("Pairwise 2-Tuple");   // construct the Button component
-	     add(btnPairWise);                    // "super" Frame adds Button
-	     btnPairWise.addActionListener(new ActionListener() {
-	         @Override
-	         public void actionPerformed(ActionEvent evt) {
-	        	 JOptionPane.showMessageDialog(null, "Not yet Implemented (2-Tuple)", "Message", JOptionPane.INFORMATION_MESSAGE);
-	            loadModel(tfLink.getText());
-	         }
-	      });
-	     btnPairWise.addActionListener(this);
-	     
-	     
 	     
 	     btnallRoundTrip = new Button("All Round-Trip Coverage");   // construct the Button component
 	     add(btnallRoundTrip);                    // "super" Frame adds Button
 	     btnallRoundTrip.addActionListener(new ActionListener() {
 	         @Override
 	         public void actionPerformed(ActionEvent evt) {
+	        	 allRTP();
 	        	 JOptionPane.showMessageDialog(null, "Not yet Implemented (ARTC)", "Message", JOptionPane.INFORMATION_MESSAGE);
 	            //loadModel(tfLink.getText());
 	         }
@@ -162,9 +139,7 @@ public class StateMachineReader extends Frame implements ActionListener,WindowLi
 	     
 	     
 	    //btnLoad.setEnabled(false);   // Declare a Button component
-	 	btnASC.setEnabled(false);
 	 	btnATC.setEnabled(false);
-	 	btnPairWise.setEnabled(false);
 	 	btnallRoundTrip.setEnabled(false);
 	 	btnsneakPath.setEnabled(false);
 	        // btnCount is the source object that fires ActionEvent when clicked.
@@ -351,6 +326,11 @@ public class StateMachineReader extends Frame implements ActionListener,WindowLi
 	public void allTC()
 	{
 		tree_generator.allTransitionsSuite();
+		//tree_generator.generateTreePaths();
+	}
+	public void allRTP()
+	{
+		tree_generator.allRoundTripPathsSuite();
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {

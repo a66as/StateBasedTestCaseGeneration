@@ -32,6 +32,7 @@ public class Tree {
 	EList<StateNode> visited=new BasicEList<StateNode>();
 	org.eclipse.core.internal.jobs.Queue x= new org.eclipse.core.internal.jobs.Queue();
 	EList<StateNode> visited2=new BasicEList<StateNode>();
+	EList<StateNode> discovered= new BasicEList<StateNode>();
 	public Tree(String cls)
 	{
 		CUT=cls;
@@ -149,30 +150,6 @@ public class Tree {
 			
 		return false;
 	}
-	public boolean inTree(StateNode s)
-	{
-		for(StateNode q:visited2)
-		{
-			if(q.name==s.name)
-				return true;
-		}
-			
-		return false;
-	}
-	public boolean seeInDepth(StateNode src, StateNode victim)
-	{
-		if(src.name==victim.name)
-			return true;
-		else
-		{
-			System.out.println(src.name);
-			for(TransitionNode t:src.transitions)
-				return seeInDepth(t.target,victim);
-		}
-		return false;
-		
-		
-	}
 	public void printTree()
 	{
 		System.out.println(root.name);
@@ -206,20 +183,85 @@ public class Tree {
 	}
 	public void allTransitionsSuite()
 	{
-		StateNode r=root;
+		count =0;
+		TestCaseTemplate conformance= new TestCaseTemplate(CUT, "AllTransitionsTestSuite");
+		conformance.body.add(CUT+" sut;"); // alpha is already made");
+		conformance.body.add("@Test");
+		conformance.body.add("public void testForPath"+count+"() {");
+		count++;
+		conformance.body.add("sut= new "+CUT+"();");
+		conformance.body.add("assertEquals(\""+root.transitions.get(0).target.name+"\",sut.stateReporter());");
+		growTheAllTransitionsTest(root.transitions.get(0).target, conformance);
+		conformance.body.add("}");
+		conformance.generateTemplateFile();
+	}
+	public void growTheAllTransitionsTest(StateNode s, TestCaseTemplate tc)
+	{
+		discovered.add(s);
+		if(s.transitions.size()==0)
+		{
+			for(int i=0; i<discovered.size();i++)
+			{
+				StateNode t= discovered.get(i);
+				if(i==discovered.size()-1)
+				{
+					//tc.body.add("assertEquals(\""+t.name+"\", sut.stateReporter()); ");
+				}
+				else
+				{
+					
+					for(TransitionNode x:t.transitions)
+					{
+						String e="";
+						StateNode ahead=discovered.get(i+1);
+						if(ahead.name==x.target.name)
+						{
+							e=t.name;
+							if(x.isGuarded)
+							{
+								tc.body.add("/* Please DIY satisfy the guard "+x.guard+" with body:"+ x.guardBody+"*/");
+							}
+							tc.body.add("sut."+x.name+"; ");
+							tc.body.add("assertEquals(\""+x.target.name+"\", sut.stateReporter()); ");
+						}
+							
+					}
+				}
+				
+				
+				//discovered.remove(discovered.size()-1);
+			}
+			discovered.remove(discovered.size()-1);
+				//System.out.println("----------------");
+		}
+		for(TransitionNode t:s.transitions)
+		{
+			growTheAllTransitionsTest(t.target, tc);
+			tc.body.add("}");
+			tc.body.add("@Test");
+			tc.body.add("public void testForPath"+count+"() {");
+			tc.body.add("sut=new "+CUT+"();");
+			count++;
+			//discovered.remove(discovered.size()-1);
+		}
+	}
+	public void allRoundTripPathsSuite()
+	{
+		count=1;
+		//StateNode r=root;
 		visited=null;
 		visited= new BasicEList<StateNode>();
-		TestCaseTemplate tc1= new TestCaseTemplate(CUT, "AllTransitionsTest");
+		TestCaseTemplate tc1= new TestCaseTemplate(CUT, "AllRoundTripPathsSuite");
 		tc1.body.add("ThreePlayerGame sut= new ThreePlayerGame(); // alpha is already made");
 		tc1.body.add("@Test");
-		tc1.body.add("public void testForPath"+count+"() {");
+		tc1.body.add("public void testForRoundTripPath"+count+"() {");
 		count++;
 		if(root.transitions.size()==1)
 		{
 			TransitionNode temp=root.transitions.get(0);
-			tc1.body.add("assertEquals(\""+temp.target.name+"\", "+"sut.stateReporter());");
+			//tc1.body.add("assertEquals(\""+temp.target.name+"\", "+"sut.stateReporter());");
 			//nodesStack.push(temp);
-			growTheTest(temp.target, tc1);
+			growTheRoundTripTest(temp.target, tc1);
 		}
 		else{
 			for(TransitionNode t:root.transitions)
@@ -227,41 +269,46 @@ public class Tree {
 				
 				tc1.body.add("sut."+t.effect+";");
 				
-				tc1.body.add("assertEquals(\""+t.target.name+"\", "+"sut.stateReporter());");
-				growTheTest(t.target, tc1);
+				//tc1.body.add("assertEquals(\""+t.target.name+"\", "+"sut.stateReporter());");
+				growTheRoundTripTest(t.target, tc1);
 			}
 		}
 		tc1.body.add("}");
 		tc1.generateTemplateFile();
 	}
-	public void growTheTest(StateNode s, TestCaseTemplate tc)
+	public void growTheRoundTripTest(StateNode s, TestCaseTemplate tc)
 	{
 		if(s.transitions.size()==0)
 		{
-			tc.body.add("\n /********** TC Completed *************/\n");
+			return;
+		}
+		if(isVisited(s))
+		{
+			tc.body.add("assertEquals(\""+s.name+"\", "+"sut.stateReporter());");;
 			tc.body.add("}");
 			tc.body.add("@Test");
 			tc.body.add("public void testForPath"+count+"() {");
 			count++;
 			return;
 		}
-		visited.add(s);
+		
 		for(TransitionNode t:s.transitions)
 		{
 			if(!t.isGuarded)
 			{
 				tc.body.add("sut."+t.name+";");
-				tc.body.add("assertEquals(\""+t.target.name+"\", "+"sut.stateReporter());");
-				growTheTest(t.target, tc);
+				//tc.body.add("assertEquals(\""+t.target.name+"\", "+"sut.stateReporter());");
+				growTheRoundTripTest(t.target, tc);
 			}
 			else
 			{
 				tc.body.add("/* for Guard false */");
 				tc.body.add("sut."+t.name+";");
-				tc.body.add("assertEquals(\""+s.name+"\", "+"sut.stateReporter()); // should be in same state");
+				//tc.body.add("assertEquals(\""+s.name+"\", "+"sut.stateReporter()); // should be in same state");
 				tc.body.add("/* for Guard True please DIY, Satisfy the guard '"+t.guard+"' with body: "+t.guardBody +"*/");
-				growTheTest(t.target, tc);
+				growTheRoundTripTest(t.target, tc);
 			}
+			visited.add(t.target);
 		}
 	}
 }
