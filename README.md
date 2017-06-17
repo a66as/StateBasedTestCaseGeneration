@@ -1,6 +1,6 @@
 # StateBasedTestCaseGeneration #
 
-This repository is a self-containing ready to compile eclipse project.
+This repository is a self-containing ready to compile eclipse project. The code utilizes a UML state-machine and generate test cases using the known N+ strategy.
 
 ### Main package expected to be selected when compiling ###
 
