@@ -65,7 +65,7 @@ public class Tree {
 					}
 				}
 			}
-			if(t.getEffect()!=null) // if there are actions :/
+			if(t.getEffect()!=null) // if there are actions 
 			{
 				effect=t.getEffect().getLabel();
 				Behavior a =t.getEffect();
@@ -113,7 +113,7 @@ public class Tree {
 					}
 				}
 			}
-			if(t.getEffect()!=null) // if there are actions :/
+			if(t.getEffect()!=null) // if there are actions 
 			{
 				effect=t.getEffect().getLabel();
 				Behavior a =t.getEffect();
