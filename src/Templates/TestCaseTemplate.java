@@ -11,7 +11,8 @@ import java.nio.file.Paths;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-
+import java.util.List;
+import java.util.ArrayList;
 /**
  * @author Abbas Khan
  *
@@ -69,9 +70,64 @@ public class TestCaseTemplate {
 			Files.write(Paths.get("src/SUT/Tests/"+testName+".java"), code.getBytes());
 			return true;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			return false;
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	 public void filterTestCasesForSneakPath() {
+	      
+	        	String fileName="src/SUT/Tests/"+this.testName+".java";
+	        	   try {
+	        	        String content = Files.readString(Paths.get(fileName));
+	        	        String[] tokens = content.split("@Test");
+
+	        	        StringBuilder filteredContent = new StringBuilder();
+	        	        boolean firstToken = true;
+
+	        	        for (String token : tokens) {
+	        	            if (firstToken) {
+	        	                filteredContent.append(token.trim());
+	        	                firstToken = false;
+	        	            } else {
+	        	                if (token.contains("_131231")) {
+	        	                    // Remove _131231
+	        	                    token = token.replace("_131231", "");
+	        	                    filteredContent.append("\n@Test\n").append(token.trim());
+	        	                }
+	        	            }
+	        	        }
+
+	        	        // Append '}' if the last token was removed and the file ended with an incomplete test case
+	        	        if (!tokens[tokens.length - 1].contains("_131231")) {
+	        	            filteredContent.append("}");
+	        	        }
+
+	        	        // Overwrite the original file with the filtered content
+	        	        Files.write(Paths.get(fileName), filteredContent.toString().getBytes());
+
+	        	    } catch (IOException e) {
+	        	        e.printStackTrace();
+	        	    }
+	    }
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

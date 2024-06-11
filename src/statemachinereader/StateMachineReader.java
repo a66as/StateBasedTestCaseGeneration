@@ -80,7 +80,7 @@ public class StateMachineReader extends Frame implements ActionListener,WindowLi
 		            tfLink.setEnabled(false);
 		    	 	btnATC.setEnabled(true);
 		    	 	btnallRoundTrip.setEnabled(false);
-		    	 	btnsneakPath.setEnabled(false);
+		    	 	btnsneakPath.setEnabled(true);
 		    	 	JOptionPane.showMessageDialog(null, "Model Loaded, Transition Tree Generated and Printed to Console.", "Loaded", JOptionPane.INFORMATION_MESSAGE);
 	            }
 	            else
@@ -125,13 +125,25 @@ public class StateMachineReader extends Frame implements ActionListener,WindowLi
 	     
 	     
 	     
+	    
+	    
+	    
+	    
+	    //sneakpath code starts here
 	     btnsneakPath = new Button("Sneak Path Suite");   // construct the Button component
 	     add(btnsneakPath);                    // "super" Frame adds Button
 	     btnsneakPath.addActionListener(new ActionListener() {
 	         @Override
 	         public void actionPerformed(ActionEvent evt) {
-	        	 JOptionPane.showMessageDialog(null, "Not yet Implemented (SneakPath Suite)", "Message", JOptionPane.INFORMATION_MESSAGE);
-	            //loadModel(tfLink.getText());
+	        	 	try {
+						allSP();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	        	 JOptionPane.showMessageDialog(null, "SneakPath Suite Generated!", "Message", JOptionPane.INFORMATION_MESSAGE);
+	            
+	        	 loadModel(tfLink.getText());
 	         }
 	      });
 	     btnsneakPath.addActionListener(this);
@@ -326,6 +338,12 @@ public class StateMachineReader extends Frame implements ActionListener,WindowLi
 	public void allTC()
 	{
 		tree_generator.allTransitionsSuite();
+		//tree_generator.generateTreePaths();
+	}
+	
+	public void allSP() throws Exception
+	{
+		tree_generator.allSneakPathSuite();
 		//tree_generator.generateTreePaths();
 	}
 	public void allRTP()

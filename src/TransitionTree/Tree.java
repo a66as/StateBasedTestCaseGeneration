@@ -5,9 +5,13 @@
  */
 package TransitionTree;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Queue;
+import java.util.Set;
 import java.util.Stack;
-
+import java.lang.reflect.Method;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.uml2.uml.Behavior;
@@ -29,10 +33,14 @@ public class Tree {
 	public StateNode root;
 	private String CUT;
 	int count=1;
+	KeyValuePair1 pairs=new KeyValuePair1();
 	EList<StateNode> visited=new BasicEList<StateNode>();
 	org.eclipse.core.internal.jobs.Queue x= new org.eclipse.core.internal.jobs.Queue();
 	EList<StateNode> visited2=new BasicEList<StateNode>();
 	EList<StateNode> discovered= new BasicEList<StateNode>();
+	List<String> visited3= new ArrayList<String>();
+	Set<String> uniqueActions = new HashSet<>();
+	int countr=0;
 	public Tree(String cls)
 	{
 		CUT=cls;
@@ -156,13 +164,17 @@ public class Tree {
 		EList<TransitionNode> newts=root.transitions;
 		for(TransitionNode t:root.transitions)
 		{
+			
 			if(!t.isGuarded)
 				System.out.println("|__"+t.name+"/"+t.effect+"--"+"-->"+t.target.name+"[further nodes:"+t.target.transitions.size()+"]");
 			else
 				System.out.println("|__"+t.name+"/"+t.effect+"--"+t.guardBody.replace("\n", " ")+"--> *"+t.target.name+"[further nodes:"+t.target.transitions.size()+"]");
 		}
-		for(TransitionNode t:newts)
+		for(TransitionNode t:newts) {
 			printNode(t.target);
+			countr++;
+		}
+			
 	}
 	public void printNode(StateNode s)
 	{
@@ -172,6 +184,7 @@ public class Tree {
 		System.out.println(s.name);
 		for(TransitionNode t:s.transitions)
 		{
+			pairs.addValue(s.name,t.name );
 			if(!t.isGuarded)
 				System.out.println("|__"+t.name+"/"+t.effect+"--"+"-->"+t.target.name+"[further nodes:"+t.target.transitions.size()+"]");
 			else
@@ -212,6 +225,7 @@ public class Tree {
 					
 					for(TransitionNode x:t.transitions)
 					{
+						
 						String e="";
 						StateNode ahead=discovered.get(i+1);
 						if(ahead.name==x.target.name)
@@ -311,4 +325,267 @@ public class Tree {
 			visited.add(t.target);
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// generating the test suit from tree
+	public void allSneakPathSuite() throws Exception
+	{
+		count =0;
+		TestCaseTemplate conformance= new TestCaseTemplate(CUT, "SneakPathTestSuit");
+		conformance.body.add(CUT+" sut;"); // alpha is already made");
+		conformance.body.add("@Test");
+		conformance.body.add("public void testForPath"+count+"() {");
+		count++;
+		conformance.body.add("sut= new "+CUT+"();");
+		conformance.body.add("assertEquals(\""+root.transitions.get(0).target.name+"\",sut.stateReporter());");
+		growSneakPathTest(root.transitions.get(0).target, conformance);
+		conformance.body.add("}");
+		conformance.generateTemplateFile();
+		conformance.filterTestCasesForSneakPath();
+	}
+	
+	
+	public void growSneakPathTest(StateNode s, TestCaseTemplate tc)
+	{
+		String sutStr="";
+		String lastState="";
+		discovered.add(s);
+		
+		getUniqueTransactionsWrapper();
+		
+		if(s.transitions.size()==0)
+		{
+			
+			for(int i=0; i<discovered.size();i++)
+			{
+				
+				StateNode t= discovered.get(i);
+				if(i==discovered.size()-1)
+				{
+					//tc.body.add("assertEquals(\""+t.name+"\", sut.stateReporter()); ");
+				}
+				else
+				{
+					
+					for(TransitionNode x:t.transitions)
+					{
+						String e="";
+						StateNode ahead=discovered.get(i+1);
+						if(ahead.name==x.target.name)
+						{
+							
+							
+							
+							e=t.name;
+							if(x.isGuarded)
+							{
+								tc.body.add("/* Please DIY satisfy the guard "+x.guard+" with body:"+ x.guardBody+"*/");
+							}
+							
+							//tc.body.add("sut."+x.name+"; ");
+							//tc.body.add("assertEquals(\""+x.target.name+"\", sut.stateReporter()); \n");
+							boolean flg4=true;
+							for(String n : visited3) {
+								
+								if(n.equals(x.target.name)) {
+									flg4=false;
+									
+								}
+								
+							}
+							
+							sutStr+="sut."+x.name+"; \n";
+							sutStr+="assertEquals(\""+x.target.name+"\", sut.stateReporter());\n";
+							lastState=x.target.name;
+							
+							//stc.body.add(sutStr);
+							if(flg4) {
+								
+								addAllSneakPathsToSUT(x.target,tc,lastState, sutStr);
+								i--;
+						
+								tc.body.add("}");
+								tc.body.add("@Test");
+								tc.body.add("public void testForPath"+count+"() {");
+								tc.body.add("sut=new "+CUT+"();");
+								count++;
+								
+							}
+							else {
+								tc.body.add(sutStr);
+							
+								sutStr="";
+							}
+//							
+							
+						}
+						
+						
+						
+						
+							
+					}
+					
+					sutStr="";
+					
+					
+					
+				}
+				
+				
+				//discovered.remove(discovered.size()-1);
+			}
+			
+			
+//removed the code from here
+			//addAllSneakPathsToSUT(s,tc,lastState, sutStr);
+			//sutStr="";
+			
+			
+			
+			discovered.remove(discovered.size()-1);
+				//System.out.println("----------------");
+		}
+		for(TransitionNode t:s.transitions)
+		{
+			growSneakPathTest(t.target, tc);
+			tc.body.add("}");
+			tc.body.add("@Test");
+			tc.body.add("public void testForPath"+count+"() {");
+			tc.body.add("sut=new "+CUT+"();");
+			count++;
+			
+			//discovered.remove(discovered.size()-1);
+		}
+		
+
+	}
+	
+	
+	
+	
+	
+	
+	//geting unique transactions
+	public void getUniqueTransactionsWrapper()
+	{
+	//	System.out.println(root.name);
+		EList<TransitionNode> newts=root.transitions;
+		for(TransitionNode t:root.transitions)
+		{
+			uniqueActions.add(t.name);
+		}
+		for(TransitionNode t:newts)
+			getUniqueTransactions(t.target);
+	}
+	public void getUniqueTransactions(StateNode s)
+	{
+		
+		if(s.transitions.size()==0)
+			return;
+		
+		for(TransitionNode t:s.transitions)
+		{
+		uniqueActions.add(t.name);
+		}
+		for(TransitionNode t:s.transitions)
+			getUniqueTransactions(t.target);
+		
+	}
+	
+	
+	
+	
+	
+	
+	public boolean alreadyExplored(StateNode n) {
+		
+		return false;
+	}
+	
+	
+	
+	public void addAllSneakPathsToSUT(StateNode s, TestCaseTemplate tc,String lastState,String sutStr) {
+		
+		boolean flg3=false;
+			
+			
+			boolean flg=true;
+			for(String n : visited3) {
+				
+				if(n.equals(s.name)) {
+					flg=false;
+					
+				}
+				
+			}
+			
+			if(flg) {
+				tc.body.add(sutStr);
+				visited3.add(s.name);
+				List<String> currentNodeActions = new ArrayList<>();
+				Set<String> uniqueActionsForCurrentState = new HashSet<>(uniqueActions);
+				
+				try {
+					System.out.println(lastState);
+					for(String x:pairs.getValues(lastState)) {
+						currentNodeActions.add(x);
+						
+					}	
+				}
+				catch(Exception e) {
+					for(TransitionNode x:s.transitions) {
+						currentNodeActions.add(x.name);
+						
+					}
+					
+				}
+				
+				
+				
+				// All illegal actions are stored here for this state
+				uniqueActionsForCurrentState.removeAll(currentNodeActions);
+				uniqueActionsForCurrentState.remove("ThreePlayerGame()");
+				uniqueActionsForCurrentState.remove("dtor()");
+				
+				for(String x:uniqueActionsForCurrentState)
+				{
+					
+					
+					
+					String e="";
+						tc.body.add("_131231sut."+x+"; ") ;
+						tc.body.add("_131231assertEquals(\""+lastState+"\", sut.stateReporter()); ");
+					
+						
+						flg3=true;
+				}
+				
+				
+			}
+			
+			
+			
+			
+		
+			
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
