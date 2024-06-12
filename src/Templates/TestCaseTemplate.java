@@ -83,7 +83,7 @@ public class TestCaseTemplate {
 	
 	
 	 public void filterTestCasesForSneakPath() {
-	      
+	      // load Test case file
 	        	String fileName="src/SUT/Tests/"+this.testName+".java";
 	        	   try {
 	        	        String content = Files.readString(Paths.get(fileName));
@@ -107,7 +107,7 @@ public class TestCaseTemplate {
 
 	        	        // Append '}' if the last token was removed and the file ended with an incomplete test case
 	        	        if (!tokens[tokens.length - 1].contains("_131231")) {
-	        	            filteredContent.append("}");
+	        	            filteredContent.append("\n}");
 	        	        }
 
 	        	        // Overwrite the original file with the filtered content

@@ -33,11 +33,13 @@ public class Tree {
 	public StateNode root;
 	private String CUT;
 	int count=1;
+	//keyValue Pair to keep the state and all legal actions from that state 
 	KeyValuePair1 pairs=new KeyValuePair1();
 	EList<StateNode> visited=new BasicEList<StateNode>();
 	org.eclipse.core.internal.jobs.Queue x= new org.eclipse.core.internal.jobs.Queue();
 	EList<StateNode> visited2=new BasicEList<StateNode>();
 	EList<StateNode> discovered= new BasicEList<StateNode>();
+	// List to maintain all the visited states
 	List<String> visited3= new ArrayList<String>();
 	Set<String> uniqueActions = new HashSet<>();
 	int countr=0;
@@ -338,6 +340,7 @@ public class Tree {
 	// generating the test suit from tree
 	public void allSneakPathSuite() throws Exception
 	{
+		//count for the testcase
 		count =0;
 		TestCaseTemplate conformance= new TestCaseTemplate(CUT, "SneakPathTestSuit");
 		conformance.body.add(CUT+" sut;"); // alpha is already made");
@@ -349,16 +352,19 @@ public class Tree {
 		growSneakPathTest(root.transitions.get(0).target, conformance);
 		conformance.body.add("}");
 		conformance.generateTemplateFile();
+		// once the testcases are generated filter out all non SneakPath testcases 
 		conformance.filterTestCasesForSneakPath();
 	}
 	
 	
 	public void growSneakPathTest(StateNode s, TestCaseTemplate tc)
 	{
+		// String to keep the testcase text before adding in the testcase 
 		String sutStr="";
+		// It is current state of the node
 		String lastState="";
 		discovered.add(s);
-		
+		//getting list of all uniqueActions for every node
 		getUniqueTransactionsWrapper();
 		
 		if(s.transitions.size()==0)
@@ -390,8 +396,7 @@ public class Tree {
 								tc.body.add("/* Please DIY satisfy the guard "+x.guard+" with body:"+ x.guardBody+"*/");
 							}
 							
-							//tc.body.add("sut."+x.name+"; ");
-							//tc.body.add("assertEquals(\""+x.target.name+"\", sut.stateReporter()); \n");
+							//checking if the the node is visited before or not
 							boolean flg4=true;
 							for(String n : visited3) {
 								
@@ -406,10 +411,12 @@ public class Tree {
 							sutStr+="assertEquals(\""+x.target.name+"\", sut.stateReporter());\n";
 							lastState=x.target.name;
 							
-							//stc.body.add(sutStr);
+							//if the node is not visited 
 							if(flg4) {
 								
+								//call all illegal transitions and create testcases for it
 								addAllSneakPathsToSUT(x.target,tc,lastState, sutStr);
+							
 								i--;
 						
 								tc.body.add("}");
@@ -514,10 +521,10 @@ public class Tree {
 	
 	
 	public void addAllSneakPathsToSUT(StateNode s, TestCaseTemplate tc,String lastState,String sutStr) {
-		
+//		This is not used will remove it after testing
 		boolean flg3=false;
 			
-			
+			//make sure that the node is not visited
 			boolean flg=true;
 			for(String n : visited3) {
 				
@@ -527,20 +534,24 @@ public class Tree {
 				}
 				
 			}
-			
+			// if node is not visited
 			if(flg) {
+				//add the previous testcases
 				tc.body.add(sutStr);
+				//adding this state to the visited array
 				visited3.add(s.name);
+				
 				List<String> currentNodeActions = new ArrayList<>();
+				
 				Set<String> uniqueActionsForCurrentState = new HashSet<>(uniqueActions);
 				
 				try {
-					System.out.println(lastState);
+					//getting the list of actions for this state
 					for(String x:pairs.getValues(lastState)) {
-						currentNodeActions.add(x);
-						
+						currentNodeActions.add(x);			
 					}	
 				}
+				//if the action is not available in the keyvalue pair get it from current node
 				catch(Exception e) {
 					for(TransitionNode x:s.transitions) {
 						currentNodeActions.add(x.name);
@@ -551,21 +562,27 @@ public class Tree {
 				
 				
 				
-				// All illegal actions are stored here for this state
+				// All illegal actions are stored here for this state i.e. AllUniqueActionsInSystem - currentNodeAction
 				uniqueActionsForCurrentState.removeAll(currentNodeActions);
+//				Remove Constructor
 				uniqueActionsForCurrentState.remove("ThreePlayerGame()");
+//				Remove distructor
 				uniqueActionsForCurrentState.remove("dtor()");
 				
 				for(String x:uniqueActionsForCurrentState)
 				{
 					
 					
-					
+//					This variable is not used will remove it after testing
+
 					String e="";
+					
+					
 						tc.body.add("_131231sut."+x+"; ") ;
 						tc.body.add("_131231assertEquals(\""+lastState+"\", sut.stateReporter()); ");
 					
-						
+//						This variable is not used will remove it after testing
+		
 						flg3=true;
 				}
 				
