@@ -209,6 +209,7 @@ public class Tree {
 		growTheAllTransitionsTest(root.transitions.get(0).target, conformance);
 		conformance.body.add("}");
 		conformance.generateTemplateFile();
+		conformance.filterTestCases();
 	}
 	public void growTheAllTransitionsTest(StateNode s, TestCaseTemplate tc)
 	{
@@ -237,8 +238,8 @@ public class Tree {
 							{
 								tc.body.add("/* Please DIY satisfy the guard "+x.guard+" with body:"+ x.guardBody+"*/");
 							}
-							tc.body.add("sut."+x.name+"; ");
-							tc.body.add("assertEquals(\""+x.target.name+"\", sut.stateReporter()); ");
+							tc.body.add("_131231sut."+x.name+"; ");
+							tc.body.add("_131231assertEquals(\""+x.target.name+"\", sut.stateReporter()); ");
 						}
 							
 					}
@@ -353,7 +354,7 @@ public class Tree {
 		conformance.body.add("}");
 		conformance.generateTemplateFile();
 		// once the testcases are generated filter out all non SneakPath testcases 
-		conformance.filterTestCasesForSneakPath();
+		conformance.filterTestCases();
 	}
 	
 	

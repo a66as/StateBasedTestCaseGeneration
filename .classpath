@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="EMF_Lib/commons-lang3-3.3.2-javadoc.jar"/>
 	<classpathentry kind="lib" path="EMF_Lib/commons-lang3-3.3.2.jar"/>
 	<classpathentry kind="lib" path="EMF_Lib/log4j-api-2.1.jar"/>
@@ -30,6 +34,11 @@
 	<classpathentry kind="lib" path="EMF_Lib/org.eclipse.uml2.uml_5.2.0.v20160516-0939.jar"/>
 	<classpathentry kind="lib" path="EMF_Lib/org.eclipse.uml2.uml.profile.standard_1.0.100.v20160516-0939.jar"/>
 	<classpathentry kind="lib" path="EMF_Lib/org.eclipse.uml2.uml.resources_5.2.0.v20160516-0939.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mhwaq/Documents/rise/StateBasedTestCaseGeneration/javaparser-core-3.5.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mhwaq/Downloads/org.eclipse.jdt.core-3.14.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/mhwaq/Downloads/org.eclipse.jface-3.12.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mhwaq/Downloads/org.eclipse.jface-3.12.2 (1).jar"/>
+	<classpathentry kind="lib" path="C:/Users/mhwaq/Downloads/google-java-format-1.22.0-all-deps (1).jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

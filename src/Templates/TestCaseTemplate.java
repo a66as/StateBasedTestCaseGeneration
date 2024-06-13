@@ -5,14 +5,17 @@
  */
 package Templates;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import java.util.List;
-import java.util.ArrayList;
+
+import com.google.googlejavaformat.java.Formatter;
+import com.google.googlejavaformat.java.FormatterException;
+
+import java.io.*;
+
 /**
  * @author Abbas Khan
  *
@@ -82,7 +85,7 @@ public class TestCaseTemplate {
 	
 	
 	
-	 public void filterTestCasesForSneakPath() {
+	 public void filterTestCases() {
 	      // load Test case file
 	        	String fileName="src/SUT/Tests/"+this.testName+".java";
 	        	   try {
@@ -109,9 +112,16 @@ public class TestCaseTemplate {
 	        	        if (!tokens[tokens.length - 1].contains("_131231")) {
 	        	            filteredContent.append("\n}");
 	        	        }
-
+	        	        //to save Formated code
+	        	        String formattedCode="";
+	        	        try {
+	        	            formattedCode = new Formatter().formatSource(filteredContent.toString());
+	        	        } catch (FormatterException e) {
+	        	            System.err.println("Error formatting code: " + e.getMessage());
+	        	            return;
+	        	        }
 	        	        // Overwrite the original file with the filtered content
-	        	        Files.write(Paths.get(fileName), filteredContent.toString().getBytes());
+	        	        Files.write(Paths.get(fileName), formattedCode.getBytes());
 
 	        	    } catch (IOException e) {
 	        	        e.printStackTrace();
@@ -120,7 +130,7 @@ public class TestCaseTemplate {
 
 	
 	
-	
+
 	
 	
 	
