@@ -32,8 +32,9 @@ public class AllTransitionsTestSuite {
     sut = new ThreePlayerGame();
     sut.p1_Start();
     assertEquals("Player 1 Served", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p1_Score()==20]*/
-    sut.p1_WinsVolley();
+    while (!(sut.p1_Score() == 20)) {
+      sut.p1_WinsVolley();
+    }
     assertEquals("Player 1 Won", sut.stateReporter());
     sut.p1_IsWinner();
     assertEquals("Player 1 Won", sut.stateReporter());
@@ -44,8 +45,9 @@ public class AllTransitionsTestSuite {
     sut = new ThreePlayerGame();
     sut.p1_Start();
     assertEquals("Player 1 Served", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p1_Score()==20]*/
-    sut.p1_WinsVolley();
+    while (!(sut.p1_Score() == 20)) {
+      sut.p1_WinsVolley();
+    }
     assertEquals("Player 1 Won", sut.stateReporter());
     sut.dtor();
     assertEquals("T", sut.stateReporter());
@@ -56,8 +58,9 @@ public class AllTransitionsTestSuite {
     sut = new ThreePlayerGame();
     sut.p1_Start();
     assertEquals("Player 1 Served", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p1_Score()==20]*/
-    sut.p1_WinsVolley();
+    while (!(sut.p1_Score() == 20)) {
+      sut.p1_WinsVolley();
+    }
     assertEquals("Player 1 Won", sut.stateReporter());
   }
 
@@ -66,8 +69,9 @@ public class AllTransitionsTestSuite {
     sut = new ThreePlayerGame();
     sut.p1_Start();
     assertEquals("Player 1 Served", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p1_Score()==20]*/
-    sut.p1_WinsVolley();
+    while (!(sut.p1_Score() == 20)) {
+      sut.p1_WinsVolley();
+    }
     assertEquals("Player 1 Won", sut.stateReporter());
     sut.p1_WinsVolley();
     assertEquals("Player 1 Served", sut.stateReporter());
@@ -78,8 +82,9 @@ public class AllTransitionsTestSuite {
     sut = new ThreePlayerGame();
     sut.p1_Start();
     assertEquals("Player 1 Served", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p1_Score()==20]*/
-    sut.p1_WinsVolley();
+    while (!(sut.p1_Score() == 20)) {
+      sut.p1_WinsVolley();
+    }
     assertEquals("Player 1 Won", sut.stateReporter());
     sut.p2_WinsVolley();
     assertEquals("Player 2 Served", sut.stateReporter());
@@ -90,11 +95,13 @@ public class AllTransitionsTestSuite {
     sut = new ThreePlayerGame();
     sut.p1_Start();
     assertEquals("Player 1 Served", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p1_Score()==20]*/
-    sut.p1_WinsVolley();
+    while (!(sut.p1_Score() == 20)) {
+      sut.p1_WinsVolley();
+    }
     assertEquals("Player 1 Won", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p3_Score()==20]*/
-    sut.p3_WinsVolley();
+    while (!(sut.p3_Score() == 20)) {
+      sut.p3_WinsVolley();
+    }
     assertEquals("Player 3 Won", sut.stateReporter());
     sut.p3_IsWinner();
     assertEquals("Player 3 Won", sut.stateReporter());
@@ -105,11 +112,13 @@ public class AllTransitionsTestSuite {
     sut = new ThreePlayerGame();
     sut.p1_Start();
     assertEquals("Player 1 Served", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p1_Score()==20]*/
-    sut.p1_WinsVolley();
+    while (!(sut.p1_Score() == 20)) {
+      sut.p1_WinsVolley();
+    }
     assertEquals("Player 1 Won", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p3_Score()==20]*/
-    sut.p3_WinsVolley();
+    while (!(sut.p3_Score() == 20)) {
+      sut.p3_WinsVolley();
+    }
     assertEquals("Player 3 Won", sut.stateReporter());
     sut.dtor();
     assertEquals("T", sut.stateReporter());
@@ -120,11 +129,13 @@ public class AllTransitionsTestSuite {
     sut = new ThreePlayerGame();
     sut.p1_Start();
     assertEquals("Player 1 Served", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p1_Score()==20]*/
-    sut.p1_WinsVolley();
+    while (!(sut.p1_Score() == 20)) {
+      sut.p1_WinsVolley();
+    }
     assertEquals("Player 1 Won", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p3_Score()==20]*/
-    sut.p3_WinsVolley();
+    while (!(sut.p3_Score() == 20)) {
+      sut.p3_WinsVolley();
+    }
     assertEquals("Player 3 Won", sut.stateReporter());
   }
 
@@ -133,11 +144,13 @@ public class AllTransitionsTestSuite {
     sut = new ThreePlayerGame();
     sut.p1_Start();
     assertEquals("Player 1 Served", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p1_Score()==20]*/
-    sut.p1_WinsVolley();
+    while (!(sut.p1_Score() == 20)) {
+      sut.p1_WinsVolley();
+    }
     assertEquals("Player 1 Won", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p3_Score()==20]*/
-    sut.p3_WinsVolley();
+    while (!(sut.p3_Score() == 20)) {
+      sut.p3_WinsVolley();
+    }
     assertEquals("Player 3 Won", sut.stateReporter());
     sut.p1_WinsVolley();
     assertEquals("Player 1 Served", sut.stateReporter());
@@ -148,11 +161,13 @@ public class AllTransitionsTestSuite {
     sut = new ThreePlayerGame();
     sut.p1_Start();
     assertEquals("Player 1 Served", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p1_Score()==20]*/
-    sut.p1_WinsVolley();
+    while (!(sut.p1_Score() == 20)) {
+      sut.p1_WinsVolley();
+    }
     assertEquals("Player 1 Won", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p3_Score()==20]*/
-    sut.p3_WinsVolley();
+    while (!(sut.p3_Score() == 20)) {
+      sut.p3_WinsVolley();
+    }
     assertEquals("Player 3 Won", sut.stateReporter());
     sut.p3_WinsVolley();
     assertEquals("Player 3 Served", sut.stateReporter());
@@ -163,17 +178,19 @@ public class AllTransitionsTestSuite {
     sut = new ThreePlayerGame();
     sut.p1_Start();
     assertEquals("Player 1 Served", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p1_Score()==20]*/
-    sut.p1_WinsVolley();
+    while (!(sut.p1_Score() == 20)) {
+      sut.p1_WinsVolley();
+    }
     assertEquals("Player 1 Won", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p3_Score()==20]*/
-    sut.p3_WinsVolley();
+    while (!(sut.p3_Score() == 20)) {
+      sut.p3_WinsVolley();
+    }
     assertEquals("Player 3 Won", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p2_Score()==20, ]*/
-    sut.p2_WinsVolley();
+    while (!(sut.p2_Score() == 20)) {
+      sut.p2_WinsVolley();
+    }
     assertEquals("Player 2 Won", sut.stateReporter());
     /* Please DIY satisfy the guard null with body:[]*/
-    sut.p2_IsWinner();
     assertEquals("Player 2 Won", sut.stateReporter());
   }
 
@@ -182,14 +199,17 @@ public class AllTransitionsTestSuite {
     sut = new ThreePlayerGame();
     sut.p1_Start();
     assertEquals("Player 1 Served", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p1_Score()==20]*/
-    sut.p1_WinsVolley();
+    while (!(sut.p1_Score() == 20)) {
+      sut.p1_WinsVolley();
+    }
     assertEquals("Player 1 Won", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p3_Score()==20]*/
-    sut.p3_WinsVolley();
+    while (!(sut.p3_Score() == 20)) {
+      sut.p3_WinsVolley();
+    }
     assertEquals("Player 3 Won", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p2_Score()==20, ]*/
-    sut.p2_WinsVolley();
+    while (!(sut.p2_Score() == 20)) {
+      sut.p2_WinsVolley();
+    }
     assertEquals("Player 2 Won", sut.stateReporter());
     sut.dtor();
     assertEquals("T", sut.stateReporter());
@@ -200,14 +220,17 @@ public class AllTransitionsTestSuite {
     sut = new ThreePlayerGame();
     sut.p1_Start();
     assertEquals("Player 1 Served", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p1_Score()==20]*/
-    sut.p1_WinsVolley();
+    while (!(sut.p1_Score() == 20)) {
+      sut.p1_WinsVolley();
+    }
     assertEquals("Player 1 Won", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p3_Score()==20]*/
-    sut.p3_WinsVolley();
+    while (!(sut.p3_Score() == 20)) {
+      sut.p3_WinsVolley();
+    }
     assertEquals("Player 3 Won", sut.stateReporter());
-    /* Please DIY satisfy the guard null with body:[this.p2_Score()==20, ]*/
-    sut.p2_WinsVolley();
+    while (!(sut.p2_Score() == 20)) {
+      sut.p2_WinsVolley();
+    }
     assertEquals("Player 2 Won", sut.stateReporter());
   }
 }

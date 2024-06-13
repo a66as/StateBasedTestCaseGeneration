@@ -25,6 +25,7 @@ import org.eclipse.uml2.uml.internal.impl.StateImpl;
 import SUT.ThreePlayerGame;
 import Templates.SuiteTemplate;
 import Templates.TestCaseTemplate;
+import utils.ConditionParser;
 /**
  * @author Abbas Khan
  *
@@ -236,8 +237,22 @@ public class Tree {
 							e=t.name;
 							if(x.isGuarded)
 							{
-								tc.body.add("/* Please DIY satisfy the guard "+x.guard+" with body:"+ x.guardBody+"*/");
+								//tc.body.add("/* Please DIY satisfy the guard "+x.guard+" with body:"+ x.guardBody+"*/");
+							String code="";
+							try {
+								String [] splitedCondition=ConditionParser.parseCondition(x.guardBody);
+								code="while(!("+splitedCondition[0]+splitedCondition[1]+(Integer.valueOf(splitedCondition[2])) +")) {";
+								code+="sut."+x.name+";";		
+								code+="\n}";
+								tc.body.add(code);
 							}
+							catch(Exception ex) {
+								tc.body.add("/* Please DIY satisfy the guard "+x.guard+" with body:"+ x.guardBody+"*/");
+								
+							}
+							
+							}
+							if(!x.isGuarded)
 							tc.body.add("_131231sut."+x.name+"; ");
 							tc.body.add("_131231assertEquals(\""+x.target.name+"\", sut.stateReporter()); ");
 						}
@@ -394,7 +409,18 @@ public class Tree {
 							e=t.name;
 							if(x.isGuarded)
 							{
-								tc.body.add("/* Please DIY satisfy the guard "+x.guard+" with body:"+ x.guardBody+"*/");
+								String code="";
+								try {
+									String [] splitedCondition=ConditionParser.parseCondition(x.guardBody);
+									code="while(!("+splitedCondition[0]+splitedCondition[1]+(Integer.valueOf(splitedCondition[2])) +")) {";
+									code+="sut."+x.name+";";		
+									code+="\n}";
+									tc.body.add(code);
+								}
+								catch(Exception ex) {
+									tc.body.add("/* Please DIY satisfy the guard "+x.guard+" with body:"+ x.guardBody+"*/");
+									
+								}
 							}
 							
 							//checking if the the node is visited before or not
@@ -407,7 +433,7 @@ public class Tree {
 								}
 								
 							}
-							
+							if(!x.isGuarded)
 							sutStr+="sut."+x.name+"; \n";
 							sutStr+="assertEquals(\""+x.target.name+"\", sut.stateReporter());\n";
 							lastState=x.target.name;

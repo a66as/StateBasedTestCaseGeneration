@@ -81,8 +81,9 @@ public class SneakPathTestSuit {
     sut.p1_Start();
     assertEquals("Player 1 Served", sut.stateReporter());
 
-    /* Please DIY satisfy the guard null with body:[this.p1_Score()==20]*/
-    sut.p1_WinsVolley();
+    while (!(sut.p1_Score() == 20)) {
+      sut.p1_WinsVolley();
+    }
     assertEquals("Player 1 Won", sut.stateReporter());
 
     sut.p3_Start();
@@ -109,8 +110,9 @@ public class SneakPathTestSuit {
     sut.p1_Start();
     assertEquals("Player 1 Served", sut.stateReporter());
 
-    /* Please DIY satisfy the guard null with body:[this.p1_Score()==20]*/
-    sut.p1_WinsVolley();
+    while (!(sut.p1_Score() == 20)) {
+      sut.p1_WinsVolley();
+    }
     assertEquals("Player 1 Won", sut.stateReporter());
 
     sut.dtor();
@@ -142,12 +144,14 @@ public class SneakPathTestSuit {
     sut.p1_Start();
     assertEquals("Player 1 Served", sut.stateReporter());
 
-    /* Please DIY satisfy the guard null with body:[this.p1_Score()==20]*/
-    sut.p1_WinsVolley();
+    while (!(sut.p1_Score() == 20)) {
+      sut.p1_WinsVolley();
+    }
     assertEquals("Player 1 Won", sut.stateReporter());
 
-    /* Please DIY satisfy the guard null with body:[this.p3_Score()==20]*/
-    sut.p3_WinsVolley();
+    while (!(sut.p3_Score() == 20)) {
+      sut.p3_WinsVolley();
+    }
     assertEquals("Player 3 Won", sut.stateReporter());
 
     sut.p3_Start();
@@ -174,16 +178,19 @@ public class SneakPathTestSuit {
     sut.p1_Start();
     assertEquals("Player 1 Served", sut.stateReporter());
 
-    /* Please DIY satisfy the guard null with body:[this.p1_Score()==20]*/
-    sut.p1_WinsVolley();
+    while (!(sut.p1_Score() == 20)) {
+      sut.p1_WinsVolley();
+    }
     assertEquals("Player 1 Won", sut.stateReporter());
 
-    /* Please DIY satisfy the guard null with body:[this.p3_Score()==20]*/
-    sut.p3_WinsVolley();
+    while (!(sut.p3_Score() == 20)) {
+      sut.p3_WinsVolley();
+    }
     assertEquals("Player 3 Won", sut.stateReporter());
 
-    /* Please DIY satisfy the guard null with body:[this.p2_Score()==20, ]*/
-    sut.p2_WinsVolley();
+    while (!(sut.p2_Score() == 20)) {
+      sut.p2_WinsVolley();
+    }
     assertEquals("Player 2 Won", sut.stateReporter());
 
     sut.p3_Start();
