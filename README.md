@@ -25,3 +25,12 @@ statemachinereader
 * All (Legal) Transitions Coverage (ALTC)
 * All Round-Trip Path Coverage (ARTPC) (Not Done)
 * Sneak Path Suite (Not Done)
+
+##### JVM Settings #####
+Add the google library jar in the repo and the following JVM options when running the application
+* --add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED
+* --add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED
+* --add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED
+* --add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED
+* --add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED
+* --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED
