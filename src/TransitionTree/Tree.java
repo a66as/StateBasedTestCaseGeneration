@@ -241,7 +241,8 @@ public class Tree {
 							String code="";
 							try {
 								String [] splitedCondition=ConditionParser.parseCondition(x.guardBody);
-								code="while(!("+splitedCondition[0]+splitedCondition[1]+(Integer.valueOf(splitedCondition[2])) +")) {\n";
+								code="/*TODO: check if the guard could be satisfied by the following generated code.*/\n";
+								code+="while(!("+splitedCondition[0]+splitedCondition[1]+(Integer.valueOf(splitedCondition[2])) +")) {\n";
 								code+="sut."+x.name+";";		
 								code+="\n}";
 								tc.body.add(code);
@@ -412,7 +413,8 @@ public class Tree {
 								String code="";
 								try {
 									String [] splitedCondition=ConditionParser.parseCondition(x.guardBody);
-									code="while(!("+splitedCondition[0]+splitedCondition[1]+(Integer.valueOf(splitedCondition[2])) +")) {\n";
+									code="/*TODO: check if the guard could be satisfied by the following generated code.*/\n";
+									code+="while(!("+splitedCondition[0]+splitedCondition[1]+(Integer.valueOf(splitedCondition[2])) +")) {\n";
 									code+="sut."+x.name+";";		
 									code+="\n}";
 									tc.body.add(code);

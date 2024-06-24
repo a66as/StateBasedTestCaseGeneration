@@ -77,6 +77,7 @@ public class SneakPathTestSuit{
         sut.p1_Start();
         assertEquals("Player 1 Served", sut.stateReporter());
         
+        /*TODO: check if the guard could be satisfied by the following generated code.*/
         while(!(sut.p1_Score()==20)) {
             sut.p1_WinsVolley();
         }
@@ -105,6 +106,7 @@ public class SneakPathTestSuit{
         sut.p1_Start();
         assertEquals("Player 1 Served", sut.stateReporter());
         
+        /*TODO: check if the guard could be satisfied by the following generated code.*/
         while(!(sut.p1_Score()==20)) {
             sut.p1_WinsVolley();
         }
@@ -138,11 +140,13 @@ public class SneakPathTestSuit{
         sut.p1_Start();
         assertEquals("Player 1 Served", sut.stateReporter());
         
+        /*TODO: check if the guard could be satisfied by the following generated code.*/
         while(!(sut.p1_Score()==20)) {
             sut.p1_WinsVolley();
         }
         assertEquals("Player 1 Won", sut.stateReporter());
         
+        /*TODO: check if the guard could be satisfied by the following generated code.*/
         while(!(sut.p3_Score()==20)) {
             sut.p3_WinsVolley();
         }
@@ -171,16 +175,19 @@ public class SneakPathTestSuit{
         sut.p1_Start();
         assertEquals("Player 1 Served", sut.stateReporter());
         
+        /*TODO: check if the guard could be satisfied by the following generated code.*/
         while(!(sut.p1_Score()==20)) {
             sut.p1_WinsVolley();
         }
         assertEquals("Player 1 Won", sut.stateReporter());
         
+        /*TODO: check if the guard could be satisfied by the following generated code.*/
         while(!(sut.p3_Score()==20)) {
             sut.p3_WinsVolley();
         }
         assertEquals("Player 3 Won", sut.stateReporter());
         
+        /*TODO: check if the guard could be satisfied by the following generated code.*/
         while(!(sut.p2_Score()==20)) {
             sut.p2_WinsVolley();
         }
