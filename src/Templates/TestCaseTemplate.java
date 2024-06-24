@@ -7,6 +7,7 @@ package Templates;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -78,20 +79,19 @@ public class TestCaseTemplate {
 			return false;
 		}
 	}
-	
-	
-	
-	
-	
-	
+
 	
 	 public void filterTestCases() {
 	      // load Test case file
 	        	String fileName="src/SUT/Tests/"+this.testName+".java";
 	        	   try {
-	        	        String content = Files.readString(Paths.get(fileName));
+	        		   String content="";
+	        		   	List<String> contents=Files.readAllLines(Paths.get(fileName));
+	        		   	for(String i : contents)
+	        		   	{
+	        		   		content+=i+"\n";
+	        		   	}
 	        	        String[] tokens = content.split("@Test");
-
 	        	        StringBuilder filteredContent = new StringBuilder();
 	        	        boolean firstToken = true;
 
@@ -113,14 +113,7 @@ public class TestCaseTemplate {
 	        	            filteredContent.append("\n}");
 	        	        }
 	        	        //to save Formated code
-	        	        String formattedCode="";
-	        	        try {
-	        	            formattedCode = new Formatter().formatSource(filteredContent.toString());
-	        	        } catch (FormatterException e) {
-	        	            System.err.println("Error formatting code: " + e.getMessage());
-	        	            return;
-	        	        }
-	        	        // Overwrite the original file with the filtered content
+	        	        String formattedCode=filteredContent.toString();
 	        	        Files.write(Paths.get(fileName), formattedCode.getBytes());
 
 	        	    } catch (IOException e) {
