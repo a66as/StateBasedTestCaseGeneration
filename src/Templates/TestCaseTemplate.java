@@ -15,6 +15,8 @@ import org.eclipse.emf.common.util.EList;
 import com.google.googlejavaformat.java.Formatter;
 import com.google.googlejavaformat.java.FormatterException;
 
+import utils.JavaCodeFormatter;
+
 import java.io.*;
 
 /**
@@ -114,6 +116,9 @@ public class TestCaseTemplate {
 	        	        }
 	        	        //to save Formated code
 	        	        String formattedCode=filteredContent.toString();
+	        	        JavaCodeFormatter formatter=new JavaCodeFormatter();
+	        	        formattedCode= formatter.formatCode(formattedCode);
+	        	        
 	        	        Files.write(Paths.get(fileName), formattedCode.getBytes());
 
 	        	    } catch (IOException e) {
