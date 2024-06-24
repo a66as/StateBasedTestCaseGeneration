@@ -12,8 +12,8 @@ public class UnitTests {
 	//example test case that tests server tracking for server p1
 	@Test
 	public void testServer1() {
-	sut= new ThreePlayerGame();
-	sut.p1_Start(); 
-	assertEquals(1,sut.server); 
+		sut= new ThreePlayerGame();
+		sut.p1_Start(); 
+		assertEquals(1,sut.server); 
 	}
 }
