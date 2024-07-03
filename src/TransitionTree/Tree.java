@@ -6,6 +6,7 @@
 package TransitionTree;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Queue;
@@ -43,7 +44,27 @@ public class Tree {
 	// List to maintain all the visited states
 	List<String> visited3= new ArrayList<String>();
 	Set<String> uniqueActions = new HashSet<>();
+	
+	
+	
+	
+	
+	
 	int countr=0;
+	
+	
+	
+	
+	
+	
+    List<List<String>> statePaths;
+    List<List<String>> transitionPaths;
+	
+	
+	
+	
+	
+	
 	public Tree(String cls)
 	{
 		CUT=cls;
@@ -197,91 +218,225 @@ public class Tree {
 			printNode(t.target);
 		
 	}
-	public void allTransitionsSuite()
-	{
-		count =0;
+
+	
+	
+	
+
+	
+	
+	
+	
+	
+//	
+//
+    public List<List<List<String>>> getAllLegalPaths() {
+        List<List<String>> allStatePaths = new ArrayList<>();
+        List<List<String>> allTransitionPaths = new ArrayList<>();
+        List<List<String>> allGuardPaths = new ArrayList<>();
+        List<String> currentStatePath = new ArrayList<>();
+        List<String> currentTransitionPath = new ArrayList<>();
+        List<String> currentGuardPath = new ArrayList<>();
+        traverseTree(root, currentStatePath, currentTransitionPath, currentGuardPath, allStatePaths, allTransitionPaths, allGuardPaths);
+        return Arrays.asList(allStatePaths, allTransitionPaths, allGuardPaths);
+    }
+
+    private void traverseTree(StateNode currentNode, List<String> currentStatePath, List<String> currentTransitionPath, List<String> currentGuardPath, List<List<String>> allStatePaths, List<List<String>> allTransitionPaths, List<List<String>> allGuardPaths) {
+        currentStatePath.add(currentNode.name);
+        if (currentNode.transitions.isEmpty()) {
+            allStatePaths.add(new ArrayList<>(currentStatePath));
+            allTransitionPaths.add(new ArrayList<>(currentTransitionPath));
+            allGuardPaths.add(new ArrayList<>(currentGuardPath));
+        } else {
+            for (TransitionNode transition : currentNode.transitions) {
+                currentTransitionPath.add(transition.name);
+                if (transition.isGuarded) {
+                    currentGuardPath.add(transition.guardBody);
+                } else {
+                    currentGuardPath.add("0"); // Placeholder for no guard
+                }
+                traverseTree(transition.target, currentStatePath, currentTransitionPath, currentGuardPath, allStatePaths, allTransitionPaths, allGuardPaths);
+                currentGuardPath.remove(currentGuardPath.size() - 1);
+                currentTransitionPath.remove(currentTransitionPath.size() - 1);
+            }
+        }
+        currentStatePath.remove(currentStatePath.size() - 1);
+    }
+
+    public void allTransitionsSuite() {
+        List<List<String>> statePaths = getAllLegalPaths().get(0);
+        List<List<String>> transitionPaths = getAllLegalPaths().get(1);
+        List<List<String>> guardPaths = getAllLegalPaths().get(2);
+
+        count =0;
 		TestCaseTemplate conformance= new TestCaseTemplate(CUT, "AllTransitionsTestSuite");
 		conformance.body.add(CUT+" sut;"); // alpha is already made");
-		conformance.body.add("@Test");
-		conformance.body.add("public void testForPath"+count+"() {");
-		count++;
-		conformance.body.add("sut= new "+CUT+"();");
-		conformance.body.add("assertEquals(\""+root.transitions.get(0).target.name+"\",sut.stateReporter());");
-		growTheAllTransitionsTest(root.transitions.get(0).target, conformance);
-		conformance.body.add("}");
-		conformance.generateTemplateFile();
-		conformance.filterTestCases();
-	}
-	public void growTheAllTransitionsTest(StateNode s, TestCaseTemplate tc)
-	{
-		discovered.add(s);
-		if(s.transitions.size()==0)
-		{
-			for(int i=0; i<discovered.size();i++)
-			{
-				StateNode t= discovered.get(i);
-				if(i==discovered.size()-1)
-				{
-					//tc.body.add("assertEquals(\""+t.name+"\", sut.stateReporter()); ");
-				}
-				else
-				{
-					
-					for(TransitionNode x:t.transitions)
-					{
-						
-						String e="";
-						StateNode ahead=discovered.get(i+1);
-						if(ahead.name==x.target.name)
-						{
-							e=t.name;
-							if(x.isGuarded)
-							{
-								//tc.body.add("/* Please DIY satisfy the guard "+x.guard+" with body:"+ x.guardBody+"*/");
-							String code="";
-							try {
-								String [] splitedCondition=ConditionParser.parseCondition(x.guardBody);
-								code="/*TODO: check if the guard could be satisfied by the following generated code.*/\n";
-								code+="while(!("+splitedCondition[0]+splitedCondition[1]+(Integer.valueOf(splitedCondition[2])) +")) {\n";
-								code+="sut."+x.name+";";		
-								code+="\n}";
-								tc.body.add(code);
-							}
-							catch(Exception ex) {
-								tc.body.add("/* Please DIY satisfy the guard "+x.guard+" with body:"+ x.guardBody+"*/");
-								
-							}
-							
-							}
-							if(!x.isGuarded)
-							tc.body.add("_131231sut."+x.name+"; ");
-							tc.body.add("_131231assertEquals(\""+x.target.name+"\", sut.stateReporter()); ");
-						}
-							
-					}
-				}
-				
-				
-				//discovered.remove(discovered.size()-1);
-			}
-			discovered.remove(discovered.size()-1);
-				//System.out.println("----------------");
-		}
-		for(TransitionNode t:s.transitions)
-		{
-			growTheAllTransitionsTest(t.target, tc);
-			tc.body.add("}");
-			tc.body.add("@Test");
-			tc.body.add("public void testForPath"+count+"() {");
-			tc.body.add("sut=new "+CUT+"();");
+        for (int i = 0; i < statePaths.size(); i++) {
+            List<String> statePath = statePaths.get(i);
+            List<String> transitionPath = transitionPaths.get(i);
+            List<String> guardPath = guardPaths.get(i);
+
+            
+			conformance.body.add("@Test");
+			conformance.body.add("public void testForPath"+count+"() {");
+			conformance.body.add("sut=new "+CUT+"();");
 			count++;
-			//discovered.remove(discovered.size()-1);
-		}
-	}
+            
+            
+            for (int j = 1; j < statePath.size(); j++) {
+                System.out.print(statePath.get(j));
+                conformance.body.add("_131231assertEquals(\""+statePath.get(j)+"\", sut.stateReporter()); ");
+				
+
+				
+
+                if (j < transitionPath.size()) {
+                    System.out.print(" (" + transitionPath.get(j) + ")");
+                    
+                    if (!"0".equals(guardPath.get(j))) {
+                        System.out.print(" [" + guardPath.get(j) + "]");
+                    	try {
+							String [] splitedCondition=ConditionParser.parseCondition(guardPath.get(j));
+							String code="";
+							code="/*TODO: check if the guard could be satisfied by the following generated code.*/\n";
+							String not="";
+							if(splitedCondition[1].equals("=="))
+								not="!";
+							
+							
+							int correction=0;
+							if(splitedCondition[1].equals("<")) {
+								correction++;
+							}
+							else if(splitedCondition[1].equals(">")) {
+								correction--;
+							}
+							
+							code+="while("+not+"("+splitedCondition[0]+splitedCondition[1]+((Integer.valueOf(splitedCondition[2])-correction)) +")) {\n";
+							code+="sut."+transitionPath.get(j)+";";		
+							code+="\n}";
+							conformance.body.add(code);
+						}
+						catch(Exception ex) {
+							conformance.body.add("/* Please DIY satisfy the guard */");
+							
+						}
+                    }else {
+                    conformance.body.add("sut."+transitionPath.get(j)+";");}
+                }
+                if (j < statePath.size() - 1) {
+                    System.out.print(" -> ");
+                }
+               // conformance.body.add("_131231sut."+transitionPath.get(j)+"; ");
+                
+            }
+            conformance.body.add("}");
+            System.out.println();
+        }
+        
+        
+        
+		conformance.generateTemplateFile();
+		// once the testcases are generated filter out all non SneakPath testcases 
+		conformance.filterTestCases();
+        
+    }
+	
+	
+	
+	
+	
+	
+	//Now doing sneak path
+    
+    
+	
+    public void allSneakPathSuite1() {
+        List<List<String>> statePaths = getAllLegalPaths().get(0);
+        List<List<String>> transitionPaths = getAllLegalPaths().get(1);
+        List<List<String>> guardPaths = getAllLegalPaths().get(2);
+
+        count =0;
+		TestCaseTemplate conformance= new TestCaseTemplate(CUT, "AllTransitionsTestSuite");
+		conformance.body.add(CUT+" sut;"); // alpha is already made");
+        for (int i = 0; i < statePaths.size(); i++) {
+            List<String> statePath = statePaths.get(i);
+            List<String> transitionPath = transitionPaths.get(i);
+            List<String> guardPath = guardPaths.get(i);
+
+            
+			conformance.body.add("@Test");
+			conformance.body.add("public void testForPath"+count+"() {");
+			conformance.body.add("sut=new "+CUT+"();");
+			count++;
+            
+            
+            for (int j = 1; j < statePath.size(); j++) {
+                System.out.print(statePath.get(j));
+                conformance.body.add("_131231assertEquals(\""+statePath.get(j)+"\", sut.stateReporter()); ");
+
+                if (j < transitionPath.size()) {
+                    System.out.print(" (" + transitionPath.get(j) + ")");
+                    
+                    if (!"0".equals(guardPath.get(j))) {
+                        System.out.print(" [" + guardPath.get(j) + "]");
+                    	try {
+							String [] splitedCondition=ConditionParser.parseCondition(guardPath.get(j));
+							String code="";
+							code="/*TODO: check if the guard could be satisfied by the following generated code.*/\n";
+							String not="";
+							if(splitedCondition[1].equals("=="))
+								not="!";
+							
+							
+							int correction=0;
+							if(splitedCondition[1].equals("<")) {
+								correction++;
+							}
+							else if(splitedCondition[1].equals(">")) {
+								correction--;
+							}
+							
+							code+="while("+not+"("+splitedCondition[0]+splitedCondition[1]+((Integer.valueOf(splitedCondition[2])-correction)) +")) {\n";
+							code+="sut."+transitionPath.get(j)+";";		
+							code+="\n}";
+							conformance.body.add(code);
+						}
+						catch(Exception ex) {
+							conformance.body.add("/* Please DIY satisfy the guard */");
+							
+						}
+                    }else {
+                    conformance.body.add("sut."+transitionPath.get(j)+";");}
+                }
+                if (j < statePath.size() - 1) {
+                    System.out.print(" -> ");
+                }
+               // conformance.body.add("_131231sut."+transitionPath.get(j)+"; ");
+                
+            }
+            conformance.body.add("}");
+            System.out.println();
+        }
+        
+        
+        
+		conformance.generateTemplateFile();
+		// once the testcases are generated filter out all non SneakPath testcases 
+		conformance.filterTestCases();
+        
+    }
+
+	
+	
+	
+	
+	
+	
+
 	public void allRoundTripPathsSuite()
 	{
 		count=1;
-		//StateNode r=root;
 		visited=null;
 		visited= new BasicEList<StateNode>();
 		TestCaseTemplate tc1= new TestCaseTemplate(CUT, "AllRoundTripPathsSuite");

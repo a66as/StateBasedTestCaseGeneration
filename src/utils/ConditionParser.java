@@ -71,11 +71,11 @@ public class ConditionParser {
 
         // Print the 2D array
         for (int i = 0; i < conditionsArray.length; i++) {
-            System.out.println("Condition " + (i + 1) + ":");
-            System.out.println("Left Operand: " + conditionsArray[i][0]);
-            System.out.println("Operator: " + conditionsArray[i][1]);
-            System.out.println("Right Operand: " + conditionsArray[i][2]);
-            System.out.println();
+           // System.out.println("Condition " + (i + 1) + ":");
+        	// System.out.println("Left Operand: " + conditionsArray[i][0]);
+        	//System.out.println("Operator: " + conditionsArray[i][1]);
+        	//System.out.println("Right Operand: " + conditionsArray[i][2]);
+        	//System.out.println();
         }
         
         if(conditionsArray.length==0)

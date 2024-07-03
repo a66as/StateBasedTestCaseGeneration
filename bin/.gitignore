@@ -1,6 +1,4 @@
-/SUT/
-/Templates/
-/TransitionTree/
 /statemachinereader/
+/TransitionTree/
+/SUT/
 /utils/
-/niSUT/
