@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_WUfEpu3DEea3nMjCaDRJ-w" name="StateMachine">
+  <packageImport xmi:id="_WUfEp-3DEea3nMjCaDRJ-w">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:StateMachine" xmi:id="_WUfEqO3DEea3nMjCaDRJ-w" name="ThreePlayerGame">
+    <region xmi:id="_WUfEqe3DEea3nMjCaDRJ-w" name="ThreePlayerGame">
+      <subvertex xmi:type="uml:Pseudostate" xmi:id="_WUfEqu3DEea3nMjCaDRJ-w" name="Alpha"/>
+      <subvertex xmi:type="uml:State" xmi:id="_WUfEq-3DEea3nMjCaDRJ-w" name="Game Started"/>
+      <subvertex xmi:type="uml:State" xmi:id="_WUfErO3DEea3nMjCaDRJ-w" name="Player 1 Served"/>
+      <subvertex xmi:type="uml:State" xmi:id="_WUfEre3DEea3nMjCaDRJ-w" name="Player 2 Served"/>
+      <subvertex xmi:type="uml:State" xmi:id="_WUfEru3DEea3nMjCaDRJ-w" name="Player 3 Served"/>
+      <subvertex xmi:type="uml:State" xmi:id="_WUfEr-3DEea3nMjCaDRJ-w" name="Player 1 Won"/>
+      <subvertex xmi:type="uml:State" xmi:id="_WUfEsO3DEea3nMjCaDRJ-w" name="Player 2 Won"/>
+      <subvertex xmi:type="uml:State" xmi:id="_WUfEse3DEea3nMjCaDRJ-w" name="Player 3 Won"/>
+      <subvertex xmi:type="uml:FinalState" xmi:id="_WUfEsu3DEea3nMjCaDRJ-w" name="T"/>
+      <transition xmi:id="_WUfEs-3DEea3nMjCaDRJ-w" name="ThreePlayerGame()" source="_WUfEqu3DEea3nMjCaDRJ-w" target="_WUfEq-3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_WUfEtO3DEea3nMjCaDRJ-w" name="TwoPlayerGame()">
+          <language></language>
+          <body>TwoPlayerGame()</body>
+        </effect>
+      </transition>
+      <transition xmi:id="_WUfEte3DEea3nMjCaDRJ-w" name="p1_Start()" source="_WUfEq-3DEea3nMjCaDRJ-w" target="_WUfErO3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_WUfEtu3DEea3nMjCaDRJ-w" name="simulateVolley()">
+          <language>Analysis</language>
+          <body>simulateVolley()</body>
+        </effect>
+      </transition>
+      <transition xmi:id="_WUfEt-3DEea3nMjCaDRJ-w" name="p3_Start()" source="_WUfEq-3DEea3nMjCaDRJ-w" target="_WUfEru3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_WUfEuO3DEea3nMjCaDRJ-w" name="simulateVolley()">
+          <language>Analysis</language>
+          <body>simulateVolley()</body>
+        </effect>
+      </transition>
+      <transition xmi:id="_WUfEue3DEea3nMjCaDRJ-w" name="p2_Start()" source="_WUfEq-3DEea3nMjCaDRJ-w" target="_WUfEre3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_WUfEuu3DEea3nMjCaDRJ-w" name="simulateVolley()">
+          <language></language>
+          <body>simulateVolley()</body>
+        </effect>
+      </transition>
+      <transition xmi:id="_WUfEu-3DEea3nMjCaDRJ-w" name="p1_WinsVolley()" source="_WUfEru3DEea3nMjCaDRJ-w" target="_WUfErO3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_WUfEvO3DEea3nMjCaDRJ-w" name="simulateVolley()">
+          <language></language>
+          <body>simulateVolley()</body>
+        </effect>
+      </transition>
+      <transition xmi:id="_WUfEve3DEea3nMjCaDRJ-w" name="p1_WinsVolley()" source="_WUfEre3DEea3nMjCaDRJ-w" target="_WUfErO3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_WUfEvu3DEea3nMjCaDRJ-w" name="simulateVolley()">
+          <language></language>
+          <body>simulateVolley()</body>
+        </effect>
+      </transition>
+      <transition xmi:id="_WUfEv-3DEea3nMjCaDRJ-w" name="p2_WinsVolley()" source="_WUfErO3DEea3nMjCaDRJ-w" target="_WUfEre3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_WUfEwO3DEea3nMjCaDRJ-w" name="simulateVolley()">
+          <language></language>
+          <body>simulateVolley()</body>
+        </effect>
+      </transition>
+      <transition xmi:id="_WUfEwe3DEea3nMjCaDRJ-w" name="p2_WinsVolley()" source="_WUfEru3DEea3nMjCaDRJ-w" target="_WUfEre3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_WUfEwu3DEea3nMjCaDRJ-w" name="simulateVolley()">
+          <language></language>
+          <body>simulateVolley()</body>
+        </effect>
+      </transition>
+      <transition xmi:id="_WUfEw-3DEea3nMjCaDRJ-w" name="p3_WinsVolley()" source="_WUfEre3DEea3nMjCaDRJ-w" target="_WUfEru3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_WUfExO3DEea3nMjCaDRJ-w" name="simulateVolley()">
+          <language>Analysis</language>
+          <body>simulateVolley()</body>
+        </effect>
+      </transition>
+      <transition xmi:id="_WUfExe3DEea3nMjCaDRJ-w" name="p3_WinsVolley()" source="_WUfErO3DEea3nMjCaDRJ-w" target="_WUfEru3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_WUfExu3DEea3nMjCaDRJ-w" name="simulateVolley()"/>
+      </transition>
+      <transition xmi:id="_WUfEx-3DEea3nMjCaDRJ-w" name="p2_WinsVolley()" source="_WUfEre3DEea3nMjCaDRJ-w" target="_WUfEsO3DEea3nMjCaDRJ-w" guard="_WUfEyO3DEea3nMjCaDRJ-w">
+        <ownedRule xmi:id="_WUfEyO3DEea3nMjCaDRJ-w" constrainedElement="_WUfEx-3DEea3nMjCaDRJ-w">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_WUfEye3DEea3nMjCaDRJ-w">
+            <language>Analysis</language>
+            <language></language>
+            <body>this.p2_Score()==20</body>
+            <body></body>
+          </specification>
+        </ownedRule>
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_WUfEyu3DEea3nMjCaDRJ-w" name="this.p1_AddPoint()">
+          <language>Analysis</language>
+          <body>this.p1_AddPoint()</body>
+        </effect>
+      </transition>
+      <transition xmi:id="_WUfEy-3DEea3nMjCaDRJ-w" name="p1_WinsVolley()" source="_WUfErO3DEea3nMjCaDRJ-w" target="_WUfEr-3DEea3nMjCaDRJ-w" guard="_WUfEzO3DEea3nMjCaDRJ-w">
+        <ownedRule xmi:id="_WUfEzO3DEea3nMjCaDRJ-w" constrainedElement="_WUfEy-3DEea3nMjCaDRJ-w">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_WUfEze3DEea3nMjCaDRJ-w">
+            <language>Analysis</language>
+            <body>this.p1_Score()==20</body>
+          </specification>
+        </ownedRule>
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_WUfEzu3DEea3nMjCaDRJ-w" name="this.p1_AddPoint()">
+          <language></language>
+          <body>this.p1_AddPoint()</body>
+        </effect>
+      </transition>
+      <transition xmi:id="_WUfEz-3DEea3nMjCaDRJ-w" name="p3_WinsVolley()" source="_WUfEru3DEea3nMjCaDRJ-w" target="_WUfEse3DEea3nMjCaDRJ-w" guard="_WUfE0O3DEea3nMjCaDRJ-w">
+        <ownedRule xmi:id="_WUfE0O3DEea3nMjCaDRJ-w" constrainedElement="_WUfEz-3DEea3nMjCaDRJ-w">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_WUfE0e3DEea3nMjCaDRJ-w">
+            <language>Analysis</language>
+            <body>this.p3_Score()==20</body>
+          </specification>
+        </ownedRule>
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_WUfE0u3DEea3nMjCaDRJ-w" name="this.p3_AddPoint()">
+          <language></language>
+          <body>this.p3_AddPoint()</body>
+        </effect>
+      </transition>
+      <transition xmi:id="_WUfE0-3DEea3nMjCaDRJ-w" name="p2_WinsVolley()" source="_WUfEre3DEea3nMjCaDRJ-w" target="_WUfEre3DEea3nMjCaDRJ-w" guard="_WUfE1O3DEea3nMjCaDRJ-w">
+        <ownedRule xmi:id="_WUfE1O3DEea3nMjCaDRJ-w" constrainedElement="_WUfE0-3DEea3nMjCaDRJ-w">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_WUfE1e3DEea3nMjCaDRJ-w">
+            <language></language>
+            <body>this.p2_Score() &lt;20</body>
+          </specification>
+        </ownedRule>
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_WUfE1u3DEea3nMjCaDRJ-w" name="this.p2.AddPoint() simulateVolley()">
+          <language>Analysis</language>
+          <body>this.p2.AddPoint()&#xD;&#xA;simulateVolley()</body>
+        </effect>
+      </transition>
+      <transition xmi:id="_WUfE1-3DEea3nMjCaDRJ-w" name="p1_WinsVolley()" source="_WUfErO3DEea3nMjCaDRJ-w" target="_WUfErO3DEea3nMjCaDRJ-w" guard="_WUfE2O3DEea3nMjCaDRJ-w">
+        <ownedRule xmi:id="_WUfE2O3DEea3nMjCaDRJ-w" constrainedElement="_WUfE1-3DEea3nMjCaDRJ-w">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_WUfE2e3DEea3nMjCaDRJ-w">
+            <language>Analysis</language>
+            <body>this.p1_Score &lt;20</body>
+          </specification>
+        </ownedRule>
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_WUfE2u3DEea3nMjCaDRJ-w" name="this.p1_AddPoint() simulateVolley()">
+          <language></language>
+          <body>this.p1_AddPoint()&#xD;&#xA;simulateVolley()</body>
+        </effect>
+      </transition>
+      <transition xmi:id="_WUfE2-3DEea3nMjCaDRJ-w" name="p3_WinsVolley()" source="_WUfEru3DEea3nMjCaDRJ-w" target="_WUfEru3DEea3nMjCaDRJ-w" guard="_WUfE3O3DEea3nMjCaDRJ-w">
+        <ownedRule xmi:id="_WUfE3O3DEea3nMjCaDRJ-w" constrainedElement="_WUfE2-3DEea3nMjCaDRJ-w">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_WUfE3e3DEea3nMjCaDRJ-w">
+            <language>Analysis</language>
+            <body>this.p3_Score() &lt;20</body>
+          </specification>
+        </ownedRule>
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_WUfE3u3DEea3nMjCaDRJ-w" name="this.p3_AddPoint() simulateVolley()">
+          <language></language>
+          <body>this.p3_AddPoint()&#xD;&#xA;simulateVolley()</body>
+        </effect>
+      </transition>
+      <transition xmi:id="_WUfE3-3DEea3nMjCaDRJ-w" name="p1_IsWinner()" source="_WUfEr-3DEea3nMjCaDRJ-w" target="_WUfEr-3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_WUfE4O3DEea3nMjCaDRJ-w" name="return TRUE;">
+          <language>Analysis</language>
+          <body>return TRUE;</body>
+        </effect>
+      </transition>
+      <transition xmi:id="_WUfE4e3DEea3nMjCaDRJ-w" name="p2_IsWinner()" source="_WUfEsO3DEea3nMjCaDRJ-w" target="_WUfEsO3DEea3nMjCaDRJ-w" guard="_WUfE4u3DEea3nMjCaDRJ-w">
+        <ownedRule xmi:id="_WUfE4u3DEea3nMjCaDRJ-w" constrainedElement="_WUfE4e3DEea3nMjCaDRJ-w">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_WUfE4-3DEea3nMjCaDRJ-w" language="" body=""/>
+        </ownedRule>
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_WUfE5O3DEea3nMjCaDRJ-w" name="Effect">
+          <language></language>
+          <body>return TRUE;</body>
+        </effect>
+      </transition>
+      <transition xmi:id="_WUfE5e3DEea3nMjCaDRJ-w" name="p3_IsWinner()" source="_WUfEse3DEea3nMjCaDRJ-w" target="_WUfEse3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_WUfE5u3DEea3nMjCaDRJ-w" name="return TRUE;">
+          <language></language>
+          <body>return TRUE;</body>
+        </effect>
+      </transition>
+      <transition xmi:id="_WUfE5-3DEea3nMjCaDRJ-w" name="dtor()" source="_WUfEr-3DEea3nMjCaDRJ-w" target="_WUfEsu3DEea3nMjCaDRJ-w"/>
+      <transition xmi:id="_WUfE6O3DEea3nMjCaDRJ-w" name="dtor()" source="_WUfEsO3DEea3nMjCaDRJ-w" target="_WUfEsu3DEea3nMjCaDRJ-w"/>
+      <transition xmi:id="_WUfE6e3DEea3nMjCaDRJ-w" name="dtor()" source="_WUfEse3DEea3nMjCaDRJ-w" target="_WUfEsu3DEea3nMjCaDRJ-w"/>
+    </region>
+  </packagedElement>
+  <profileApplication xmi:id="_WUfE6u3DEea3nMjCaDRJ-w">
+    <eAnnotations xmi:id="_WUfE6-3DEea3nMjCaDRJ-w" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+    </eAnnotations>
+    <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+  </profileApplication>
+</uml:Package>
