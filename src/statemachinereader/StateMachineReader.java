@@ -1,40 +1,22 @@
 package statemachinereader;
-import java.awt.*;        // Using AWT container and component classes
-import java.awt.event.*;  // Using AWT event classes and listener interfaces
-import java.io.ObjectInputStream.GetField;
-import java.security.Guard;
-import java.security.MessageDigest;
+// Using AWT container and component classes
 
-import javax.print.attribute.Attribute;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+// Using AWT event classes and listener interfaces
 
-import org.eclipse.core.commands.State;
-import org.eclipse.emf.*;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.uml2.*;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.BodyOwner;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
-import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.PseudostateKind;
-import org.eclipse.uml2.uml.Region;
-import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Transition;
-import org.eclipse.uml2.uml.internal.impl.ClassImpl;
-import org.eclipse.uml2.uml.internal.impl.ConstraintImpl;
-import org.eclipse.uml2.uml.internal.impl.EventImpl;
 import org.eclipse.uml2.uml.internal.impl.FinalStateImpl;
-import org.eclipse.uml2.uml.internal.impl.InitialNodeImpl;
 import org.eclipse.uml2.uml.internal.impl.PseudostateImpl;
 import org.eclipse.uml2.uml.internal.impl.RegionImpl;
 import org.eclipse.uml2.uml.internal.impl.StateImpl;
 import org.eclipse.uml2.uml.internal.impl.StateMachineImpl;
-import org.eclipse.uml2.uml.internal.impl.StereotypeImpl;
 
 import TransitionTree.Tree;
 
@@ -46,140 +28,148 @@ import TransitionTree.Tree;
  * @version 1.0
  */
 
-public class StateMachineReader extends Frame implements ActionListener,WindowListener {
+public class StateMachineReader  {
 	static Tree tree_generator=null;
-	private Label lblLink;    // Declare a Label component 
-	private TextField tfLink; // Declare a TextField component 
-	private Button btnLoad;   // Declare a Button component
-	private Button btnATC;
-	private Label lblGenerate;
-	private Button btnallRoundTrip;
-	private Button btnsneakPath;
-	//private int count = 0;     // Counter's value
-	public StateMachineReader()
+	private String tfLink; // Declare a TextField component 
+
+	public StateMachineReader(String modelPath) throws Exception
 	{
-		setLayout(new FlowLayout());
+		tfLink = modelPath; // construct the TextField component
+		loadModel(tfLink);
+		allTC();
+		allSP();
+	
+	}
+	
+	public static void main(String[] args) {
+		//loadModel();
+
+	}
+	
+	//private int count = 0;     // Counter's value
+	public StateMachineReader() throws Exception
+	{
+		//setLayout(new FlowLayout());
         // "super" Frame (a Container) sets its layout to FlowLayout, which arranges
         // the components from left-to-right, and flow to next row from top-to-bottom.
 
-	     lblLink = new Label("Model Link:");  // construct the Label component
-	     add(lblLink);                    // "super" Frame adds Label
+	     //lblLink = new Label("Model Link:");  // construct the Label component
+	     //add(lblLink);                    // "super" Frame adds Label
 	
-	     tfLink = new TextField("Models/StateMachine.uml", 30); // construct the TextField component
-	     tfLink.setEditable(false);       // set to read-only
-	     add(tfLink);                     // "super" Frame adds TextField
+	     
+		tfLink = "Models/StateMachine.uml"; // construct the TextField component
+		loadModel(tfLink);
+		// tfLink.setEditable(false);       // set to read-only
+	     //add(tfLink);                     // "super" Frame adds TextField
 	
-	     btnLoad = new Button("Load and Generate Tree");   // construct the Button component
-	     add(btnLoad);                    // "super" Frame adds Button
-	     btnLoad.addActionListener(new ActionListener() {
-	         @Override
-	         public void actionPerformed(ActionEvent evt) {
-	            if(loadModel(tfLink.getText()))
-	            {
-	            	btnLoad.setEnabled(false);
-		            tfLink.setEnabled(false);
-		    	 	btnATC.setEnabled(true);
-		    	 	btnallRoundTrip.setEnabled(false);
-		    	 	btnsneakPath.setEnabled(true);
-		    	 	JOptionPane.showMessageDialog(null, "Model Loaded, Transition Tree Generated and Printed to Console.", "Loaded", JOptionPane.INFORMATION_MESSAGE);
-	            }
-	            else
-	            {
-	            	JOptionPane.showMessageDialog(null, "ERROR! While loading the model.", "ERROR", JOptionPane.ERROR_MESSAGE);
-	            	//System.exit(0);....
-	            }
-	         }
-	      });
-	     btnLoad.addActionListener(this);
+	    // btnLoad = new Button("Load and Generate Tree");   // construct the Button component
+	   //  add(btnLoad);                    // "super" Frame adds Button
+	   //  btnLoad.addActionListener(new ActionListener() {
+	     //    @Override
+//	         public void actionPerformed(ActionEvent evt) {
+//	            if(loadModel(tfLink.getText()))
+//	            {
+//	            	btnLoad.setEnabled(false);
+//		            tfLink.setEnabled(false);
+//		    	 	btnATC.setEnabled(true);
+//		    	 	btnallRoundTrip.setEnabled(false);
+//		    	 	btnsneakPath.setEnabled(true);
+//		    	 	JOptionPane.showMessageDialog(null, "Model Loaded, Transition Tree Generated and Printed to Console.", "Loaded", JOptionPane.INFORMATION_MESSAGE);
+//	            }
+//	            else
+//	            {
+//	            	JOptionPane.showMessageDialog(null, "ERROR! While loading the model.", "ERROR", JOptionPane.ERROR_MESSAGE);
+//	            	//System.exit(0);....
+//	            }
+//	         }
+	      //});
+	    // btnLoad.addActionListener(this);
 	     
 	     
 	     
-	     lblGenerate = new Label("Generate:\n");  // construct the Label component
-	     add(lblGenerate); 
-	     btnATC = new Button("All Transitions coverage Suite");   // construct the Button component
-	     add(btnATC);                    // "super" Frame adds Button
-	     btnATC.addActionListener(new ActionListener() {
-	         @Override
-	         public void actionPerformed(ActionEvent evt) {
-	        	 allTC();
-	        	 JOptionPane.showMessageDialog(null, "Please Refresh the Package SUT.tests", "Generated", JOptionPane.INFORMATION_MESSAGE);
-	        	 //JOptionPane.showMessageDialog(null, "Not yet Implemented (ATC)", "Message", JOptionPane.INFORMATION_MESSAGE);
-	            //loadModel(tfLink.getText());
-	         }
-	      });
-	     btnATC.addActionListener(this);
+//	     lblGenerate = new Label("Generate:\n");  // construct the Label component
+//	     add(lblGenerate); 
+//	     btnATC = new Button("All Transitions coverage Suite");   // construct the Button component
+//	     add(btnATC);                    // "super" Frame adds Button
+//	     btnATC.addActionListener(new ActionListener() {
+//	         @Override
+//	         public void actionPerformed(ActionEvent evt) {
+//	        	 
+//	        	 JOptionPane.showMessageDialog(null, "Please Refresh the Package SUT.tests", "Generated", JOptionPane.INFORMATION_MESSAGE);
+//	        	 //JOptionPane.showMessageDialog(null, "Not yet Implemented (ATC)", "Message", JOptionPane.INFORMATION_MESSAGE);
+//	            //loadModel(tfLink.getText());
+//	         }
+//	      });
+//	     btnATC.addActionListener(this);
+		allTC();
+		allSP();
 	     
-	     
-	     
-	     btnallRoundTrip = new Button("All Round-Trip Coverage");   // construct the Button component
-	     add(btnallRoundTrip);                    // "super" Frame adds Button
-	     btnallRoundTrip.addActionListener(new ActionListener() {
-	         @Override
-	         public void actionPerformed(ActionEvent evt) {
-	        	 allRTP();
-	        	 JOptionPane.showMessageDialog(null, "Not yet Implemented (ARTC)", "Message", JOptionPane.INFORMATION_MESSAGE);
-	            //loadModel(tfLink.getText());
-	         }
-	      });
-	    btnallRoundTrip.addActionListener(this);
-	     
-	     
-	     
-	    
-	    
-	    
-	    
-	    //sneakpath code starts here
-	     btnsneakPath = new Button("Sneak Path Suite");   // construct the Button component
-	     add(btnsneakPath);                    // "super" Frame adds Button
-	     btnsneakPath.addActionListener(new ActionListener() {
-	         @Override
-	         public void actionPerformed(ActionEvent evt) {
-	        	 	try {
-						allSP();
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-	        	 JOptionPane.showMessageDialog(null, "SneakPath Suite Generated!", "Message", JOptionPane.INFORMATION_MESSAGE);
-	            
-	        	 loadModel(tfLink.getText());
-	         }
-	      });
-	     btnsneakPath.addActionListener(this);
-	     
-	     
-	     
-	    //btnLoad.setEnabled(false);   // Declare a Button component
-	 	btnATC.setEnabled(false);
-	 	btnallRoundTrip.setEnabled(false);
-	 	btnsneakPath.setEnabled(false);
-	        // btnCount is the source object that fires ActionEvent when clicked.
-	        // The source add "this" instance as an ActionEvent listener, which provides
-	        //  an ActionEvent handler called actionPerformed().
-	        // Clicking btnCount invokes actionPerformed().
-	     addWindowListener(this);
-	
-	     setTitle("StateBasedTestCaseGenerator");  // "super" Frame sets its title
-	     setSize(500, 150);        // "super" Frame sets its initial window size
-	
-	     // For inspecting the components/container objects
-	     // System.out.println(this);
-	     // System.out.println(lblCount);
-	     // System.out.println(tfCount);
-	     // System.out.println(btnCount);
-	
-	     setVisible(true);         // "super" Frame shows
-	
+//	     btnallRoundTrip = new Button("All Round-Trip Coverage");   // construct the Button component
+//	     add(btnallRoundTrip);                    // "super" Frame adds Button
+//	     btnallRoundTrip.addActionListener(new ActionListener() {
+//	         @Override
+//	         public void actionPerformed(ActionEvent evt) {
+//	        	 allRTP();
+//	        	 JOptionPane.showMessageDialog(null, "Not yet Implemented (ARTC)", "Message", JOptionPane.INFORMATION_MESSAGE);
+//	            //loadModel(tfLink.getText());
+//	         }
+//	      });
+//	    btnallRoundTrip.addActionListener(this);
+//	     
+//	     
+//	     
+//	    
+//	    
+//	    
+//	    
+//	    //sneakpath code starts here
+//	     btnsneakPath = new Button("Sneak Path Suite");   // construct the Button component
+//	     add(btnsneakPath);                    // "super" Frame adds Button
+//	     btnsneakPath.addActionListener(new ActionListener() {
+//	         @Override
+//	         public void actionPerformed(ActionEvent evt) {
+//	        	 	try {
+//						
+//					} catch (Exception e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//	        	 JOptionPane.showMessageDialog(null, "SneakPath Suite Generated!", "Message", JOptionPane.INFORMATION_MESSAGE);
+//	            
+//	        	 loadModel(tfLink.getText());
+//	         }
+//	      });
+//	     btnsneakPath.addActionListener(this);
+//	     
+//	     
+//	     
+//	    //btnLoad.setEnabled(false);   // Declare a Button component
+//	 	btnATC.setEnabled(false);
+//	 	btnallRoundTrip.setEnabled(false);
+//	 	btnsneakPath.setEnabled(false);
+//	        // btnCount is the source object that fires ActionEvent when clicked.
+//	        // The source add "this" instance as an ActionEvent listener, which provides
+//	        //  an ActionEvent handler called actionPerformed().
+//	        // Clicking btnCount invokes actionPerformed().
+//	     addWindowListener(this);
+//	
+//	     setTitle("StateBasedTestCaseGenerator");  // "super" Frame sets its title
+//	     setSize(500, 150);        // "super" Frame sets its initial window size
+//	
+//	     // For inspecting the components/container objects
+//	     // System.out.println(this);
+//	     // System.out.println(lblCount);
+//	     // System.out.println(tfCount);
+//	     // System.out.println(btnCount);
+//	
+//	     setVisible(true);         // "super" Frame shows
+//	
 	     // System.out.println(this);
 	     // System.out.println(lblCount);
 	     // System.out.println(tfCount);
 	     // System.out.println(btnCount);
 	}
-	public static void main(String[] args) {
-		//loadModel();
-		StateMachineReader smr= new StateMachineReader();
-	}// main end
+
 	public static boolean loadModel(String umlFilePath)
 	{
 		// TODO Auto-generated method stub
@@ -349,45 +339,5 @@ public class StateMachineReader extends Frame implements ActionListener,WindowLi
 	public void allRTP()
 	{
 		tree_generator.allRoundTripPathsSuite();
-	}
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void windowActivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void windowClosed(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void windowClosing(WindowEvent e) {
-		// TODO Auto-generated method stub
-		System.exit(0);  // Terminate the program
-	}
-	@Override
-	public void windowDeactivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void windowDeiconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void windowIconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void windowOpened(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 }
