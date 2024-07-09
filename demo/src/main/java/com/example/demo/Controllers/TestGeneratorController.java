@@ -195,8 +195,8 @@ String userSavedModelAddress="Models/User_StateMachine.uml";
     @GetMapping("/generatetestcases")
     public String generate_testcases(Model model) throws Exception {
 
-        String fileName1="/src/SUT/Tests/user_AllTransitionsTestSuite.java";
-        String fileName2="/src/SUT/Tests/user_SneakPathTestSuit.java";
+        String fileName1="/src/SUT/tests/user_AllTransitionsTestSuite.java";
+        String fileName2="/src/SUT/tests/user_SneakPathTestSuit.java";
         String content2 ="";
         String content1 ="";
         // flag to check if generate path already run or not;
@@ -218,7 +218,7 @@ String userSavedModelAddress="Models/User_StateMachine.uml";
 
 
             flag=false;
-            fileName1="/src/SUT/Tests/AllTransitionsTestSuite.java";
+            fileName1="/src/SUT/tests/AllTransitionsTestSuite.java";
             content1 = Files.readString(Paths.get(fileName1));
         }
 
@@ -239,7 +239,7 @@ String userSavedModelAddress="Models/User_StateMachine.uml";
 
                 }
             }
-            fileName2="/src/SUT/Tests/SneakPathTestSuit.java";
+            fileName2="/src/SUT/tests/SneakPathTestSuit.java";
             content2 = Files.readString(Paths.get(fileName2));
         }
 

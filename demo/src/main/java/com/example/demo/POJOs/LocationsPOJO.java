@@ -45,8 +45,8 @@ public class LocationsPOJO {
     public Map<String, LocationsPOJO> getLocations()
     {
         Map<String, LocationsPOJO> map = new HashMap<>();
-            map.put("AllTransitionPaths",new LocationsPOJO("AllTransitionPaths","src/SUT/Tests/AllTransitionsTestSuite.java".replace("\\","/"),"src/SUT/Tests/user_AllTransitionsTestSuite.java".replace("\\","/")));
-            map.put("sneakPath",new LocationsPOJO("sneakPath","src/SUT/Tests/SneakPathTestSuit.java".replace("\\","/"),"src/SUT/Tests/user_SneakPathTestSuit.java".replace("\\","/")));
+            map.put("AllTransitionPaths",new LocationsPOJO("AllTransitionPaths","src/SUT/tests/AllTransitionsTestSuite.java".replace("\\","/"),"src/SUT/tests/user_AllTransitionsTestSuite.java".replace("\\","/")));
+            map.put("sneakPath",new LocationsPOJO("sneakPath","src/SUT/tests/SneakPathTestSuit.java".replace("\\","/"),"src/SUT/tests/user_SneakPathTestSuit.java".replace("\\","/")));
             map.put("UnitTests",new LocationsPOJO("UnitTests","src/niSUT/tests/UnitTests.java".replace("\\","/"),"src/niSUT/tests/user_UnitTests.java".replace("\\","/")));
         return map;
     }
