@@ -16,10 +16,11 @@ public class FileReaderHelper {
         String code="";
         Map<String, LocationsPOJO> locations=new LocationsPOJO().getLocations();
         try{
-            code = Files.readString(Paths.get(locations.get(task).getPrimaryFileLoc()));
+            code = Files.readString(Paths.get(locations.get(task).getUserSavedFileLoc()));
+
         }
         catch (Exception e){
-            code = Files.readString(Paths.get(locations.get(task).getUserSavedFileLoc()));
+            code = Files.readString(Paths.get(locations.get(task).getPrimaryFileLoc()));
 
         }
 
