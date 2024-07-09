@@ -181,6 +181,11 @@
             border-right: none;
         }
     }
+
+
+
+
+
   </style>
 </head>
 <body>
@@ -271,7 +276,7 @@
 
                 <li>M6: added p1_WinsVolley() in p1_start()</li>
                 <li>M7: In p1_start() server=1 exchange with p2_start() server=2</li>
-                <li>M8: </li>
+                <li>M8: in exchanged the points of p1 and p2 in p*_addsPoint() </li>
                 <li>M9: In p2_IsWinner() changed the return boolean</li>
                 <li>M10: In p2_winsVolley() removed server=2</li>
 
@@ -280,9 +285,7 @@
                 <li>M13: Exchanged states of p1_WinsVolley() and p2_WinsVolley()</li>
                 <li>M14: Exchanged states of p3_Start() and p2_Start()</li>
                 <li>M15: Exchanged state of "Game Started" with "Player 1 Served"</li>
-                <li>M16: Removed "Game Started" state</li>
-                <li>M17: Removed "Player 3 Served" state</li>
-                <li>M18: Removed "Player 1 Won" state </li>
+
 
               </ul>
             </div>
@@ -431,10 +434,11 @@ alert(codeContent1)
       // Display the selected tasks (for demonstration purposes)
       alert('Selected tasks: ' + selectedTasks.join(', '));
       // You can also log it to the console
+       alert('It may take upto 5 minutes and the output will be prinited in console!');
       console.log('Selected tasks:', selectedTasks);
       // You can also handle the selected tasks further, e.g., submit via AJAX, etc.
 
-
+     document.getElementById('text4').innerText= 'Running...';
      var formData = new FormData();
     formData.append('tasks', selectedTasks);
 

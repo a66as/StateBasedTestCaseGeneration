@@ -17,6 +17,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
@@ -204,15 +205,18 @@ String userSavedModelAddress="Models/User_StateMachine.uml";
             content1 = Files.readString(Paths.get(fileName1));
         }
         catch (Exception e){
-            try{
-                System.out.println("reading");
+
+            Path path = Paths.get(userSavedModelAddress);
+            if(Files.exists(path)){
                 StateMachineReader stateMachineReader=new StateMachineReader(userSavedModelAddress);
 
             }
-            catch (Exception ex){
+            else{
                 StateMachineReader stateMachineReader=new StateMachineReader(modelAddress);
 
             }
+
+
             flag=false;
             fileName1="/src/SUT/Tests/AllTransitionsTestSuite.java";
             content1 = Files.readString(Paths.get(fileName1));
@@ -225,11 +229,12 @@ String userSavedModelAddress="Models/User_StateMachine.uml";
         }
         catch (Exception e){
             if(flag) {
-                try{
+                Path path = Paths.get(userSavedModelAddress);
+                if(Files.exists(path)){
                     StateMachineReader stateMachineReader=new StateMachineReader(userSavedModelAddress);
 
                 }
-                catch (Exception ex){
+                else{
                     StateMachineReader stateMachineReader=new StateMachineReader(modelAddress);
 
                 }

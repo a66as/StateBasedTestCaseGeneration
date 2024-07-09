@@ -45,7 +45,7 @@ public class m5TwoPlayerGame {
 	public boolean p1_IsWinner()
 	{
 		/*True if P1's score is 21*/
-		if(p1_points>20)
+		if(p1_points>19)
 		{
 			/* @instrumentation */
 			state="Player 1 Won";
@@ -100,7 +100,7 @@ public class m5TwoPlayerGame {
 	public boolean p2_IsWinner()
 	{
 		/*True if P2's score is 21*/
-		if(p2_points>20)
+		if(p2_points>19)
 		{
 			/* @instrumentation */
 			state="Player 2 Won";

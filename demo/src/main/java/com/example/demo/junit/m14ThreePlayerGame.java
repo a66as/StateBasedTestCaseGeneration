@@ -45,7 +45,7 @@ public class m14ThreePlayerGame extends m14TwoPlayerGame {
 	public boolean p3_IsWinner()
 	{
 		/*True if P3's score is 21*/
-		if(p3_points>20)
+		if(p3_points>19)
 		{
 			/* @instrumentation */
 			state="Player 3 Won";

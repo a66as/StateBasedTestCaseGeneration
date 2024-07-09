@@ -12,11 +12,9 @@ public class m8TwoPlayerGame {
 		/* @instrumentation */
 		state="Game Started";
 	}
-
 	public void p1_Start()
 	{
 		/*P1 Serves first*/
-
 		/* not implemented method simulateVolley() should be called here */
 		server=1; // p1 is server
 		/* @instrumentation */
@@ -27,7 +25,8 @@ public class m8TwoPlayerGame {
 		/*P1 ends the volley*/
 		/* not implemented method simulateVolley() should be called here */
 		server=1; // p1 is server
-		if(!p2_IsWinner())
+		p1_AddPoint();
+		if(!p1_IsWinner())
 		{
 			/* @instrumentation */
 			state="Player 1 Served";
@@ -42,12 +41,12 @@ public class m8TwoPlayerGame {
 	private void p1_AddPoint()
 	{
 		/*Adds 1 to the P1's score*/
-		p1_points++;
+		p2_points++;
 	}
 	public boolean p1_IsWinner()
 	{
 		/*True if P1's score is 21*/
-		if(p1_points>20)
+		if(p1_points>19)
 		{
 			/* @instrumentation */
 			state="Player 1 Won";
@@ -75,15 +74,13 @@ public class m8TwoPlayerGame {
 		/* @instrumentation */
 		state="Player 2 Served";
 	}
-
 	public void p2_WinsVolley()
 	{
 		/*P2 ends the volley*/
 		/* not implemented method simulateVolley() should be called here */
 		server=2;
-
-
-		if(!p1_IsWinner())
+		p2_AddPoint();
+		if(!p2_IsWinner())
 		{
 			/* @instrumentation */
 			state="Player 2 Served";
@@ -98,12 +95,12 @@ public class m8TwoPlayerGame {
 	private void p2_AddPoint()
 	{
 		/*Adds 1 to P2's Score*/
-		p2_points++;
+		p1_points++;
 	}
 	public boolean p2_IsWinner()
 	{
 		/*True if P2's score is 21*/
-		if(p2_points>20)
+		if(p2_points>19)
 		{
 			/* @instrumentation */
 			state="Player 2 Won";

@@ -12,7 +12,6 @@ public class m8ThreePlayerGame extends m8TwoPlayerGame {
 		/* not implemented method simulateVolley() should be called here */
 		server=3; // p3 is server
 		/* @instrumentation */
-
 		state="Player 3 Served";
 	}
 	public void p3_WinsVolley()
@@ -21,8 +20,6 @@ public class m8ThreePlayerGame extends m8TwoPlayerGame {
 		/* not implemented method simulateVolley() should be called here */
 		server=3; // p3 is server
 		p3_AddPoint();
-
-		p2_WinsVolley();
 		/* @instrumentation */
 		if(!p3_IsWinner())
 		{
@@ -43,7 +40,7 @@ public class m8ThreePlayerGame extends m8TwoPlayerGame {
 	public boolean p3_IsWinner()
 	{
 		/*True if P3's score is 21*/
-		if(p3_points>20)
+		if(p3_points>19)
 		{
 			/* @instrumentation */
 			state="Player 3 Won";
