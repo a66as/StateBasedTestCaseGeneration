@@ -116,7 +116,7 @@ String userSavedModelAddress="Models/User_StateMachine.uml";
 
         index=0;
         for(String task : tasks){
-            for(int i=0 ;i<18;i++) {
+            for(int i=1 ;i<16;i++) {
                 String temp="";
                 c+="Runnning m"+i+"\n\n";
                 temp=compilerService.processAndExecuteMutations(fileHelper.getClassCode(task),"m"+i+"TwoPlayerGame","m"+i+"ThreePlayerGame");
