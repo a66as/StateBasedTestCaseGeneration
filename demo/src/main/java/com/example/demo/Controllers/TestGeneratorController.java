@@ -34,9 +34,9 @@ String modelAddress="Models/StateMachine.uml";
 String userSavedModelAddress="Models/User_StateMachine.uml";
     @GetMapping("/")
     public String index(Model model) throws IOException {
-        String fileName1="/app/src/niSUT/niTwoPlayerGame.java";
+        String fileName1="/src/niSUT/niTwoPlayerGame.java";
         String content1 = Files.readString(Paths.get(fileName1));
-        String fileName2="/app/src/niSUT/niThreePlayerGame.java";
+        String fileName2="/src/niSUT/niThreePlayerGame.java";
         String content2 = Files.readString(Paths.get(fileName2));
         model.addAttribute("name", "User");
         model.addAttribute("text1",content1 );
@@ -46,9 +46,9 @@ String userSavedModelAddress="Models/User_StateMachine.uml";
 
     @GetMapping("/index")
     public String index1(Model model) throws IOException {
-        String fileName1="/app/src/niSUT/niTwoPlayerGame.java";
+        String fileName1="/src/niSUT/niTwoPlayerGame.java";
         String content1 = Files.readString(Paths.get(fileName1));
-        String fileName2="/app/src/niSUT/niThreePlayerGame.java";
+        String fileName2="/src/niSUT/niThreePlayerGame.java";
         String content2 = Files.readString(Paths.get(fileName2));
         model.addAttribute("name", "User");
         model.addAttribute("text1",content1 );
@@ -60,9 +60,9 @@ String userSavedModelAddress="Models/User_StateMachine.uml";
 
     @GetMapping("/instrumented_sut")
     public String instrumentedSUT(Model model) throws IOException {
-        String fileName1="/app/src/SUT/TwoPlayerGame.java";
+        String fileName1="/src/SUT/TwoPlayerGame.java";
         String content1 = Files.readString(Paths.get(fileName1));
-        String fileName2="/app/src/SUT/ThreePlayerGame.java";
+        String fileName2="/src/SUT/ThreePlayerGame.java";
         String content2 = Files.readString(Paths.get(fileName2));
         model.addAttribute("name", "User");
         model.addAttribute("text1",content1 );
@@ -194,8 +194,8 @@ String userSavedModelAddress="Models/User_StateMachine.uml";
     @GetMapping("/generatetestcases")
     public String generate_testcases(Model model) throws Exception {
 
-        String fileName1="src/SUT/tests/user_AllTransitionsTestSuite.java";
-        String fileName2="src/SUT/tests/user_SneakPathTestSuit.java";
+        String fileName1="/src/SUT/Tests/user_AllTransitionsTestSuite.java";
+        String fileName2="/src/SUT/Tests/user_SneakPathTestSuit.java";
         String content2 ="";
         String content1 ="";
         // flag to check if generate path already run or not;
@@ -214,7 +214,7 @@ String userSavedModelAddress="Models/User_StateMachine.uml";
 
             }
             flag=false;
-            fileName1="src/SUT/tests/AllTransitionsTestSuite.java";
+            fileName1="/src/SUT/Tests/AllTransitionsTestSuite.java";
             content1 = Files.readString(Paths.get(fileName1));
         }
 
@@ -234,7 +234,7 @@ String userSavedModelAddress="Models/User_StateMachine.uml";
 
                 }
             }
-            fileName2="src/SUT/tests/SneakPathTestSuit.java";
+            fileName2="/src/SUT/Tests/SneakPathTestSuit.java";
             content2 = Files.readString(Paths.get(fileName2));
         }
 
@@ -271,13 +271,13 @@ String userSavedModelAddress="Models/User_StateMachine.uml";
     @GetMapping("/unit-tests")
     public String unitTests(Model model) throws Exception {
         //StateMachineReader stateMachineReader=new StateMachineReader();
-        String fileName1="src/niSUT/tests/user_UnitTests.java";
+        String fileName1="/src/niSUT/tests/user_UnitTests.java";
         String content1 = "";
         try{
             content1 = Files.readString(Paths.get(fileName1));
         }
         catch (Exception e){
-            fileName1="src/niSUT/tests/UnitTests.java";
+            fileName1="/src/niSUT/tests/UnitTests.java";
             content1 = Files.readString(Paths.get(fileName1));
 
         }

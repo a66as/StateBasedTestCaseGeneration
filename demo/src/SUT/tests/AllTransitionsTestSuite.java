@@ -1,4 +1,3 @@
-/* Auto generated test case for ThreePlayerGame */
 package SUT.tests;
 import SUT.ThreePlayerGame;
 import static org.junit.Assert.*;

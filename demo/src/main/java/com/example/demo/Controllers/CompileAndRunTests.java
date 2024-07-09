@@ -105,7 +105,7 @@ public class CompileAndRunTests {
 
     public String runJUnitTests(String className) throws IOException, InterruptedException {
        String res="";
-        String classpath = ".:/app/src/main/java/com/example/demo/junit/junit-4.13.2.jar:/app/src/main/java/com/example/demo/junit/hamcrest-core-1.3.jar";
+        String classpath = ".:/src/main/java/com/example/demo/junit/junit-4.13.2.jar:/src/main/java/com/example/demo/junit/hamcrest-core-1.3.jar";
 
 //        String classpath = ".;com\\example\\demo\\junit\\junit-4.13.2.jar" +
  //               ";com\\example\\demo\\junit\\hamcrest-core-1.3.jar";
