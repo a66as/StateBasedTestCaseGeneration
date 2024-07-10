@@ -28,16 +28,40 @@ public class JUnitRunnerService {
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // code for mutations
     public String processAndExecuteMutations(String javaCode,String twoPlayer,String threePlayer) throws IOException, InterruptedException {
-
+        String processedCode="";
         String currentWorkingDirectory = System.getProperty("user.dir");
         String saveLocation=currentWorkingDirectory+"\\src\\main\\java\\com\\example\\demo\\junit".replace("\\","/");
         String className = extractClassName(javaCode); // Extract class name from Java code
         String fileName = saveLocation + File.separator + className + ".java"; // Construct file name with class name
+        if(className.contains("UnitTests")){
+            processedCode = removePackageStatement(javaCode).replaceAll("niThreePlayerGame",threePlayer);
+            processedCode = removePackageStatement(processedCode).replaceAll("niTwoPlayerGame",twoPlayer);
 
-        String processedCode = removePackageStatement(javaCode).replaceAll("ThreePlayerGame",threePlayer);
 
+        }
+        else {
+            processedCode = removePackageStatement(javaCode).replaceAll("ThreePlayerGame", threePlayer);
+            processedCode = removePackageStatement(processedCode).replaceAll("TwoPlayerGame", twoPlayer);
+
+        }
+        System.out.println(processedCode);
         saveJavaClass(processedCode, fileName);
 
         // Execute shell commands (compile and run tests)
@@ -46,6 +70,37 @@ public class JUnitRunnerService {
         deleteFile(saveLocation + File.separator + className + ".class");
         return result;
     }
+
+
+//code for executing unit test
+    public String processAndExecuteUnitTest(String javaCode,String twoPlayer,String threePlayer) throws IOException, InterruptedException {
+
+        String currentWorkingDirectory = System.getProperty("user.dir");
+        String saveLocation=currentWorkingDirectory+"\\src\\main\\java\\com\\example\\demo\\junit".replace("\\","/");
+        String className = extractClassName(javaCode); // Extract class name from Java code
+        String fileName = saveLocation + File.separator + className + ".java"; // Construct file name with class name
+        String processedCode = removePackageStatement(javaCode);
+        System.out.println(processedCode);
+        saveJavaClass(processedCode, fileName);
+
+        // Execute shell commands (compile and run tests)
+        String result=executeShellCommandsForMutations(className,twoPlayer, threePlayer);
+        deleteFile(saveLocation + File.separator + className + ".java");
+        deleteFile(saveLocation + File.separator + className + ".class");
+        return result;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 private void deleteFile(String filePath){
 
@@ -81,6 +136,9 @@ private void deleteFile(String filePath){
         // Remove package statement
         javaCode="package com.example.demo.junit;\n"+javaCode.replaceAll("(?m)^.*package.*$", "").replaceAll("(?m)^[ \t]*\r?\n", "");
         //javaCode=javaCode.replace("package SUT.tests;","");
+        javaCode=javaCode.replaceAll("import niSUT.niThreePlayerGame;","");
+        javaCode=javaCode.replaceAll("import niSUT.niTwoPlayerGame;","");
+        javaCode=javaCode.replaceAll("import SUT.TwoPlayerGame;;","");
         return javaCode.replaceAll("import SUT.ThreePlayerGame;","");
     }
 

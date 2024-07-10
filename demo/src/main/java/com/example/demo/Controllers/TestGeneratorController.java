@@ -267,8 +267,10 @@ String userSavedModelAddress="Models/User_StateMachine.uml";
 
 
         System.out.println("output");
-
-        return  compilerService.processAndExecute(code);
+        // here I can run mutant class
+        code=code.replaceAll("import niSUT.niThreePlayerGame;","");
+        code=code.replaceAll("import niSUT.niTwoPlayerGame;","");
+        return  compilerService.processAndExecuteUnitTest(code,"niTwoPlayerGame","niThreePlayerGame");
     }
 
 
@@ -286,7 +288,7 @@ String userSavedModelAddress="Models/User_StateMachine.uml";
 
         }
         //model.addAttribute("name", "User");
-        model.addAttribute("text1",content1 );
+        model.addAttribute("text1",content1);
         model.addAttribute("text3", "");
         return "unit_tests";
 

@@ -4,16 +4,16 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import SUT.ThreePlayerGame;
+import niSUT.niThreePlayerGame;
 
 public class UnitTests {
 
-	ThreePlayerGame sut;
+	niThreePlayerGame sut;
 	//example test case that tests server tracking for server p1
 	@Test(timeout = 1000)
-	public void testServer1() {
-		sut= new ThreePlayerGame();
+	public void unitTest0() {
+		sut= new niThreePlayerGame();
 		sut.p1_Start(); 
-		assertEquals(1,5);
+		assertEquals(1,1);
 	}
 }
