@@ -17,4 +17,10 @@ public class TransitionNode{
 		target=t;
 		name=n;
 	}
+	@Override
+	public String toString() {
+		return "TransitionNode [isGuarded=" + isGuarded + ", guard=" + guard + ", effect=" + effect + ", guardBody="
+				+ guardBody + ", effectBody=" + effectBody + ", target=" + target + ", name=" + name + "]";
+	}
+	
 }

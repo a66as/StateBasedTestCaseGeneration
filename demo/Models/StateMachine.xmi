@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://schema.omg.org/spec/UML/2.2" xsi:schemaLocation="http://schema.omg.org/spec/UML/2.2 http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_St1uFu3DEea3nMjCaDRJ-w" name="StateMachine">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_St1uF-3DEea3nMjCaDRJ-w">
+    <importedPackage xmi:type="uml:Model" href="http://schema.omg.org/spec/UML/2.2/uml.xml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:StateMachine" xmi:id="_St1uGO3DEea3nMjCaDRJ-w" name="ThreePlayerGame">
+    <region xmi:type="uml:Region" xmi:id="_St1uGe3DEea3nMjCaDRJ-w" name="ThreePlayerGame">
+      <subvertex xmi:type="uml:Pseudostate" xmi:id="_St1uGu3DEea3nMjCaDRJ-w" name="Alpha"/>
+      <subvertex xmi:type="uml:State" xmi:id="_St1uG-3DEea3nMjCaDRJ-w" name="Game Started"/>
+      <subvertex xmi:type="uml:State" xmi:id="_St1uHO3DEea3nMjCaDRJ-w" name="Player 1 Served"/>
+      <subvertex xmi:type="uml:State" xmi:id="_St1uHe3DEea3nMjCaDRJ-w" name="Player 2 Served"/>
+      <subvertex xmi:type="uml:State" xmi:id="_St1uHu3DEea3nMjCaDRJ-w" name="Player 3 Served"/>
+      <subvertex xmi:type="uml:State" xmi:id="_St1uH-3DEea3nMjCaDRJ-w" name="Player 1 Won"/>
+      <subvertex xmi:type="uml:State" xmi:id="_St1uIO3DEea3nMjCaDRJ-w" name="Player 2 Won"/>
+      <subvertex xmi:type="uml:State" xmi:id="_St1uIe3DEea3nMjCaDRJ-w" name="Player 3 Won"/>
+      <subvertex xmi:type="uml:FinalState" xmi:id="_St1uIu3DEea3nMjCaDRJ-w" name="T"/>
+      <transition xmi:type="uml:Transition" xmi:id="_St1uI-3DEea3nMjCaDRJ-w" name="ThreePlayerGame()" source="_St1uGu3DEea3nMjCaDRJ-w" target="_St1uG-3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_St1uJO3DEea3nMjCaDRJ-w" name="TwoPlayerGame()">
+          <language></language>
+          <body>TwoPlayerGame()</body>
+        </effect>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_St1uJe3DEea3nMjCaDRJ-w" name="p1_Start()" source="_St1uG-3DEea3nMjCaDRJ-w" target="_St1uHO3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_St1uJu3DEea3nMjCaDRJ-w" name="simulateVolley()">
+          <language>Analysis</language>
+          <body>simulateVolley()</body>
+        </effect>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_St1uJ-3DEea3nMjCaDRJ-w" name="p3_Start()" source="_St1uG-3DEea3nMjCaDRJ-w" target="_St1uHu3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_St1uKO3DEea3nMjCaDRJ-w" name="simulateVolley()">
+          <language>Analysis</language>
+          <body>simulateVolley()</body>
+        </effect>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_St1uKe3DEea3nMjCaDRJ-w" name="p2_Start()" source="_St1uG-3DEea3nMjCaDRJ-w" target="_St1uHe3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_St1uKu3DEea3nMjCaDRJ-w" name="simulateVolley()">
+          <language></language>
+          <body>simulateVolley()</body>
+        </effect>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_St1uK-3DEea3nMjCaDRJ-w" name="p1_WinsVolley()" source="_St1uHu3DEea3nMjCaDRJ-w" target="_St1uHO3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_St1uLO3DEea3nMjCaDRJ-w" name="simulateVolley()">
+          <language></language>
+          <body>simulateVolley()</body>
+        </effect>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_St1uLe3DEea3nMjCaDRJ-w" name="p1_WinsVolley()" source="_St1uHe3DEea3nMjCaDRJ-w" target="_St1uHO3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_St1uLu3DEea3nMjCaDRJ-w" name="simulateVolley()">
+          <language></language>
+          <body>simulateVolley()</body>
+        </effect>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_St1uL-3DEea3nMjCaDRJ-w" name="p2_WinsVolley()" source="_St1uHO3DEea3nMjCaDRJ-w" target="_St1uHe3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_St1uMO3DEea3nMjCaDRJ-w" name="simulateVolley()">
+          <language></language>
+          <body>simulateVolley()</body>
+        </effect>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_St1uMe3DEea3nMjCaDRJ-w" name="p2_WinsVolley()" source="_St1uHu3DEea3nMjCaDRJ-w" target="_St1uHe3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_St1uMu3DEea3nMjCaDRJ-w" name="simulateVolley()">
+          <language></language>
+          <body>simulateVolley()</body>
+        </effect>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_St1uM-3DEea3nMjCaDRJ-w" name="p3_WinsVolley()" source="_St1uHe3DEea3nMjCaDRJ-w" target="_St1uHu3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_St1uNO3DEea3nMjCaDRJ-w" name="simulateVolley()">
+          <language>Analysis</language>
+          <body>simulateVolley()</body>
+        </effect>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_St1uNe3DEea3nMjCaDRJ-w" name="p3_WinsVolley()" source="_St1uHO3DEea3nMjCaDRJ-w" target="_St1uHu3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_St1uNu3DEea3nMjCaDRJ-w" name="simulateVolley()"/>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_St1uN-3DEea3nMjCaDRJ-w" name="p2_WinsVolley()" source="_St1uHe3DEea3nMjCaDRJ-w" target="_St1uIO3DEea3nMjCaDRJ-w" guard="_St1uOO3DEea3nMjCaDRJ-w">
+        <ownedRule xmi:type="uml:Constraint" xmi:id="_St1uOO3DEea3nMjCaDRJ-w" constrainedElement="_St1uN-3DEea3nMjCaDRJ-w">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_St1uOe3DEea3nMjCaDRJ-w">
+            <language>Analysis</language>
+            <language></language>
+            <body>this.p2_Score()==20</body>
+            <body></body>
+          </specification>
+        </ownedRule>
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_St1uOu3DEea3nMjCaDRJ-w" name="this.p1_AddPoint()">
+          <language>Analysis</language>
+          <body>this.p1_AddPoint()</body>
+        </effect>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_St1uO-3DEea3nMjCaDRJ-w" name="p1_WinsVolley()" source="_St1uHO3DEea3nMjCaDRJ-w" target="_St1uH-3DEea3nMjCaDRJ-w" guard="_St1uPO3DEea3nMjCaDRJ-w">
+        <ownedRule xmi:type="uml:Constraint" xmi:id="_St1uPO3DEea3nMjCaDRJ-w" constrainedElement="_St1uO-3DEea3nMjCaDRJ-w">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_St1uPe3DEea3nMjCaDRJ-w">
+            <language>Analysis</language>
+            <body>this.p1_Score()==20</body>
+          </specification>
+        </ownedRule>
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_St1uPu3DEea3nMjCaDRJ-w" name="this.p1_AddPoint()">
+          <language></language>
+          <body>this.p1_AddPoint()</body>
+        </effect>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_St1uP-3DEea3nMjCaDRJ-w" name="p3_WinsVolley()" source="_St1uHu3DEea3nMjCaDRJ-w" target="_St1uIe3DEea3nMjCaDRJ-w" guard="_St1uQO3DEea3nMjCaDRJ-w">
+        <ownedRule xmi:type="uml:Constraint" xmi:id="_St1uQO3DEea3nMjCaDRJ-w" constrainedElement="_St1uP-3DEea3nMjCaDRJ-w">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_St1uQe3DEea3nMjCaDRJ-w">
+            <language>Analysis</language>
+            <body>this.p3_Score()==20</body>
+          </specification>
+        </ownedRule>
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_St1uQu3DEea3nMjCaDRJ-w" name="this.p3_AddPoint()">
+          <language></language>
+          <body>this.p3_AddPoint()</body>
+        </effect>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_St1uQ-3DEea3nMjCaDRJ-w" name="p2_WinsVolley()" source="_St1uHe3DEea3nMjCaDRJ-w" target="_St1uHe3DEea3nMjCaDRJ-w" guard="_St1uRO3DEea3nMjCaDRJ-w">
+        <ownedRule xmi:type="uml:Constraint" xmi:id="_St1uRO3DEea3nMjCaDRJ-w" constrainedElement="_St1uQ-3DEea3nMjCaDRJ-w">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_St1uRe3DEea3nMjCaDRJ-w">
+            <language></language>
+            <body>this.p2_Score() &lt;20</body>
+          </specification>
+        </ownedRule>
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_St1uRu3DEea3nMjCaDRJ-w" name="this.p2.AddPoint() simulateVolley()">
+          <language>Analysis</language>
+          <body>this.p2.AddPoint()&#xD;&#xA;simulateVolley()</body>
+        </effect>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_St1uR-3DEea3nMjCaDRJ-w" name="p1_WinsVolley()" source="_St1uHO3DEea3nMjCaDRJ-w" target="_St1uHO3DEea3nMjCaDRJ-w" guard="_St1uSO3DEea3nMjCaDRJ-w">
+        <ownedRule xmi:type="uml:Constraint" xmi:id="_St1uSO3DEea3nMjCaDRJ-w" constrainedElement="_St1uR-3DEea3nMjCaDRJ-w">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_St1uSe3DEea3nMjCaDRJ-w">
+            <language>Analysis</language>
+            <body>this.p1_Score() &lt;20</body>
+          </specification>
+        </ownedRule>
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_St1uSu3DEea3nMjCaDRJ-w" name="this.p1_AddPoint() simulateVolley()">
+          <language></language>
+          <body>this.p1_AddPoint()&#xD;&#xA;simulateVolley()</body>
+        </effect>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_St1uS-3DEea3nMjCaDRJ-w" name="p3_WinsVolley()" source="_St1uHu3DEea3nMjCaDRJ-w" target="_St1uHu3DEea3nMjCaDRJ-w" guard="_St1uTO3DEea3nMjCaDRJ-w">
+        <ownedRule xmi:type="uml:Constraint" xmi:id="_St1uTO3DEea3nMjCaDRJ-w" constrainedElement="_St1uS-3DEea3nMjCaDRJ-w">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_St1uTe3DEea3nMjCaDRJ-w">
+            <language>Analysis</language>
+            <body>this.p3_Score() &lt;20</body>
+          </specification>
+        </ownedRule>
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_St1uTu3DEea3nMjCaDRJ-w" name="this.p3_AddPoint() simulateVolley()">
+          <language></language>
+          <body>this.p3_AddPoint()&#xD;&#xA;simulateVolley()</body>
+        </effect>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_St1uT-3DEea3nMjCaDRJ-w" name="p1_IsWinner()" source="_St1uH-3DEea3nMjCaDRJ-w" target="_St1uH-3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_St1uUO3DEea3nMjCaDRJ-w" name="return TRUE;">
+          <language>Analysis</language>
+          <body>return TRUE;</body>
+        </effect>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_St1uUe3DEea3nMjCaDRJ-w" name="p2_IsWinner()" source="_St1uIO3DEea3nMjCaDRJ-w" target="_St1uIO3DEea3nMjCaDRJ-w" guard="_St1uUu3DEea3nMjCaDRJ-w">
+        <ownedRule xmi:type="uml:Constraint" xmi:id="_St1uUu3DEea3nMjCaDRJ-w" constrainedElement="_St1uUe3DEea3nMjCaDRJ-w">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_St1uU-3DEea3nMjCaDRJ-w" language="" body=""/>
+        </ownedRule>
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_St1uVO3DEea3nMjCaDRJ-w" name="Effect">
+          <language></language>
+          <body>return TRUE;</body>
+        </effect>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_St1uVe3DEea3nMjCaDRJ-w" name="p3_IsWinner()" source="_St1uIe3DEea3nMjCaDRJ-w" target="_St1uIe3DEea3nMjCaDRJ-w">
+        <effect xmi:type="uml:OpaqueBehavior" xmi:id="_St1uVu3DEea3nMjCaDRJ-w" name="return TRUE;">
+          <language></language>
+          <body>return TRUE;</body>
+        </effect>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_St1uV-3DEea3nMjCaDRJ-w" name="~()" source="_St1uH-3DEea3nMjCaDRJ-w" target="_St1uIu3DEea3nMjCaDRJ-w"/>
+      <transition xmi:type="uml:Transition" xmi:id="_St1uWO3DEea3nMjCaDRJ-w" name="~()" source="_St1uIO3DEea3nMjCaDRJ-w" target="_St1uIu3DEea3nMjCaDRJ-w"/>
+      <transition xmi:type="uml:Transition" xmi:id="_St1uWe3DEea3nMjCaDRJ-w" name="~()" source="_St1uIe3DEea3nMjCaDRJ-w" target="_St1uIu3DEea3nMjCaDRJ-w"/>
+    </region>
+  </packagedElement>
+  <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_St1uWu3DEea3nMjCaDRJ-w">
+    <xmi:Extension extender="http://www.eclipse.org/emf/2002/Ecore">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_St1uW-3DEea3nMjCaDRJ-w" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://schema.omg.org/spec/UML/2.2/StandardProfileL2.xmi#_yzU58YinEdqtvbnfB2L_5w"/>
+      </eAnnotations>
+    </xmi:Extension>
+    <appliedProfile xmi:type="uml:Profile" href="http://schema.omg.org/spec/UML/2.2/StandardProfileL2.xmi#_0"/>
+  </profileApplication>
+</uml:Package>
