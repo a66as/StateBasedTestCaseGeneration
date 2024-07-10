@@ -33,11 +33,11 @@ statemachinereader
 *  Navigate to /StateBasedTestCaseGeneration/frontend/
 * Open Terminal in /StateBasedTestCaseGeneration/frontend/
 * now run the following commands in terminal
-  * "docker build -t capsule ." (to build the image)
-  * "docker run -d -v my_src_volume:/src -v my_models_volume:/Models -v my_jarfile_lib_volume:/jarfile_lib  -p 8080:8080 --name capsule_container capsule" (to run the container)
-  * "docker logs -f capsule_container" (to get logs of container)
-* The app is up and running now goto http://localhost:8080/ in your browser
-* If you want to stop/start the app use "docker stop/start capsule_container"
+  * `docker build -t capsule .` (to build the image)
+  * `docker run -d -v my_src_volume:/src -v my_models_volume:/Models -v my_jarfile_lib_volume:/jarfile_lib  -p 8080:8080 --name capsule_container capsule` (to run the container)
+  * `docker logs -f capsule_container` (to get logs of container)
+* The app is up and running navidate to `http://localhost:8080/` in your browser
+* If you want to stop/start the app use `docker stop/start capsule_container`
 
 
 
