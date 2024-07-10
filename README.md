@@ -23,8 +23,8 @@ statemachinereader
 
 ##### Junit4 Test Case Generation for #####
 * All (Legal) Transitions Coverage (ALTC)
-* All Round-Trip Path Coverage (ARTPC) (Not Done)
-* Sneak Path Suite (Not Done)
+* All Round-Trip Path Coverage (ARTPC) (Somehow covered by ALTC, for some reasons beyond explanation)
+* Sneak Path Suite (Done)
 
 
 ##### How to Run The Project? #####
