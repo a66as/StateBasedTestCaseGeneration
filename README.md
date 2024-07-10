@@ -25,3 +25,22 @@ statemachinereader
 * All (Legal) Transitions Coverage (ALTC)
 * All Round-Trip Path Coverage (ARTPC) (Not Done)
 * Sneak Path Suite (Not Done)
+
+
+##### How to Run The Project? #####
+* Clone the front-end branch
+* Install and open Docker Desktop (preferable version: 4.31.1), make sure that the engine is up and running.
+*  Navigate to /StateBasedTestCaseGeneration/frontend/
+* Open Terminal in /StateBasedTestCaseGeneration/frontend/
+* now run the following commands in terminal
+  * docker build -t capsule . (to build the image)
+  * docker run -d -v my_src_volume:/src -v my_models_volume:/Models -v my_jarfile_lib_volume:/jarfile_lib  -p 8080:8080 --name capsule_container capsule (to run the container)
+  * docker logs -f capsule_container (to get logs of container)
+  
+
+
+
+
+
+
+
