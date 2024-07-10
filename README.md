@@ -30,8 +30,8 @@ statemachinereader
 ##### How to Run The Project? #####
 * Clone the front-end branch
 * Install and open Docker Desktop (preferable version: 4.31.1), make sure that the engine is up and running.
-*  Navigate to /StateBasedTestCaseGeneration/frontend/
-* Open Terminal in /StateBasedTestCaseGeneration/frontend/
+* Navigate to `/StateBasedTestCaseGeneration/demo/`
+* Open Terminal in `/StateBasedTestCaseGeneration/demo/`
 * now run the following commands in terminal
   * `docker build -t capsule .` (to build the image)
   * `docker run -d -v my_src_volume:/src -v my_models_volume:/Models -v my_jarfile_lib_volume:/jarfile_lib  -p 8080:8080 --name capsule_container capsule` (to run the container)
