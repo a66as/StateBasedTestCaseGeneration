@@ -27,8 +27,8 @@ statemachinereader
 * Sneak Path Suite (Done)
 
 
-##### How to Run The Project? #####
-* Clone the front-end branch
+##### How to Run The Front-end? #####
+* Clone the `master` branch
 * Install and open Docker Desktop (preferable version: 4.31.1), make sure that the engine is up and running.
 * Navigate to `/StateBasedTestCaseGeneration/demo/`
 * Open Terminal in `/StateBasedTestCaseGeneration/demo/`
