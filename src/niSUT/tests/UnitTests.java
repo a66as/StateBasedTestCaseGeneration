@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import niSUT.ThreePlayerGame;
+import SUT.ThreePlayerGame;
 
 public class UnitTests {
 
