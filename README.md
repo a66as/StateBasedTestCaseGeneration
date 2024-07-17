@@ -13,7 +13,7 @@
 * Ability to make edits to generated tests
 * Running generated and manual unit tests on mutants
 
-##### How to Run the Code Play Ground)? #####
+##### How to Run the Code Play Ground? #####
 * Clone the `master` branch
 * Install and open Docker Desktop (preferable version: 4.31.1), make sure that the engine is up and running.
 * Navigate to `/StateBasedTestCaseGeneration/demo/`
