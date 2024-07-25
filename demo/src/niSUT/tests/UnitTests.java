@@ -14,6 +14,6 @@ public class UnitTests {
 	public void unitTest0() {
 		sut= new niThreePlayerGame();
 		sut.p1_Start(); 
-		assertEquals(1,1);
+		assertEquals(1,sut.server);
 	}
 }
