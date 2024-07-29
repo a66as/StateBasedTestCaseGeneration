@@ -199,7 +199,7 @@
         <ul class="list-unstyled">
           <li >
             <form action="/" method="get">
-              <button type="submit" class="btn">SUT1: ThrePlayerGame</button>
+              <button type="submit" class="btn">SUT1: ThreePlayerGame</button>
             </form>
           </li>
           <li style="background-color: #5a6268;">
@@ -214,7 +214,7 @@
           </li>
           <li>
             <form action="/instrumented_sut" method="get">
-              <button type="submit" class="btn">SUT1: Instrumented ThrePlayerGame</button>
+              <button type="submit" class="btn">SUT1: Instrumented ThreePlayerGame</button>
             </form>
           </li>
 
@@ -286,7 +286,7 @@
   });
 function submitCode(elementId) {
     var codeContent1 = document.getElementById(elementId).innerText;
-alert(codeContent1)
+alert('OK to confirm running of UnitTests.java.')
     var formData = new FormData();
     formData.append('codeContent', codeContent1);
 
@@ -357,7 +357,7 @@ alert(codeContent1)
 
   function saveCode(elementId,loc) {
       var codeContent1 = document.getElementById(elementId).innerText;
-  alert(codeContent1)
+  alert('Click Ok to Confirm Saving the code')
       var formData = new FormData();
       formData.append('codeContent', codeContent1);
       formData.append('fileName', loc);

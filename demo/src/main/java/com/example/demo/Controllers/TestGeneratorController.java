@@ -98,8 +98,17 @@ String userSavedModelAddress="Models/User_StateMachine.uml";
        //To get the results for original code so that we can compare it to kill the mutants
         for(String task:tasks){
             String code=fileHelper.getClassCode(task);
-            orignalOutputs[index]=compilerService.processAndExecute(code);
+            if(task.equals("UnitTests")){
+                orignalOutputs[index]=compilerService.processAndExecuteUnitTest(code,"niTwoPlayerGame","niThreePlayerGame");
+                // System.out.println("printing output:"+ orignalOutputs[index]);
+
+            }
+            else{
+                orignalOutputs[index]=compilerService.processAndExecute(code);
+
+            }
             methodNames.add(tokenizer.processString(code));
+
             List<String> failedTestMethods=new ArrayList<>();
             for(int l=0;l<methodNames.get(index).size();l++){
                 //get indivisual failed testcases
@@ -117,9 +126,10 @@ String userSavedModelAddress="Models/User_StateMachine.uml";
 
         index=0;
         for(String task : tasks){
-            for(int i=1 ;i<13;i++) {
+            for(int i=1;i<13;i++) {
                 String temp="";
                 c+="Runnning m"+i+"\n\n";
+                System.out.println("Runnning m"+i+"\n\n");
                 temp=compilerService.processAndExecuteMutations(fileHelper.getClassCode(task),"m"+i+"TwoPlayerGame","m"+i+"ThreePlayerGame");
                 c+=temp;
                 if(temp.contains("FAILURES")){
@@ -131,8 +141,10 @@ String userSavedModelAddress="Models/User_StateMachine.uml";
                         //getting all testcases which are failed in the mutants
                         List<String> failedTestCasesInMutants=new ArrayList<>();
                         for(int m=0;m<methodNames.get(index).size();m++){
-                            if(temp.contains(methodNames.get(index).get(m)));
+                            if(temp.contains(methodNames.get(index).get(m)))
                             {
+                                System.out.println("indexsss  "+methodNames.get(index).size());
+
                                 failedTestCasesInMutants.add(methodNames.get(index).get(m));
                             }
 
@@ -141,17 +153,21 @@ String userSavedModelAddress="Models/User_StateMachine.uml";
                         boolean checker=false;
                        for(String testcase:failedTestCases.get(index)){
                            String result = failedTestCasesInMutants.stream().collect(Collectors.joining(", "));
-
+                           System.out.println(result+ "uzu2");
+                           System.out.println("VVVV  "+testcase);
                            if(result.contains(testcase) && (failedTestCases.get(index).size()<failedTestCasesInMutants.size())){
 
                            }else{
                                 checker=true;
                                mutantsDetails += task+"-> M"+i+" Survived!\n";
+                               System.out.println("uzu3");
+
                                break;
                            }
 
                        }
                        if(!checker){
+                           System.out.println("uzu4");
                            mutantsDetails += task+"-> M"+i+" Killed!\n";
 
 
@@ -167,8 +183,9 @@ String userSavedModelAddress="Models/User_StateMachine.uml";
                 else {
                     mutantsDetails+=task+"-> M"+i+" Survived!\n";
                 }
-                System.out.println(c);
+              //  System.out.println(c);
             }
+            System.out.println(c);
             index++;
         }
 

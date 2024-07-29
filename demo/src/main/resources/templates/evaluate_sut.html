@@ -204,7 +204,7 @@
         <ul class="list-unstyled">
           <li >
             <form action="/" method="get">
-              <button type="submit" class="btn">SUT1: ThrePlayerGame</button>
+              <button type="submit" class="btn">SUT1: ThreePlayerGame</button>
             </form>
           </li>
           <li >
@@ -220,7 +220,7 @@
 
           <li>
             <form action="/instrumented_sut" method="get">
-              <button type="submit" class="btn">SUT1: Instrumented ThrePlayerGame</button>
+              <button type="submit" class="btn">SUT1: Instrumented ThreePlayerGame</button>
             </form>
           </li>
 
@@ -344,7 +344,6 @@
   });
 function submitCode(elementId) {
     var codeContent1 = document.getElementById(elementId).innerText;
-alert(codeContent1)
     var formData = new FormData();
     formData.append('codeContent', codeContent1);
 
@@ -424,15 +423,13 @@ alert(codeContent1)
       // Get all checkbox elements
       const checkboxes = document.querySelectorAll('input[type="checkbox"][name="tasks"]:checked');
       // Create an array to store selected values
+      alert('OK to Confirm Running the Code. This Code Might Take Upto 5 Minutes to get Results');
+
       const selectedTasks = [];
       // Loop through the checked checkboxes and push their values to the array
       checkboxes.forEach(checkbox => {
           selectedTasks.push(checkbox.value);
       });
-      // Display the selected tasks (for demonstration purposes)
-      alert('Selected tasks: ' + selectedTasks.join(', '));
-      // You can also log it to the console
-       alert('It may take upto 5 minutes and the output will be prinited in console!');
       console.log('Selected tasks:', selectedTasks);
       // You can also handle the selected tasks further, e.g., submit via AJAX, etc.
 
