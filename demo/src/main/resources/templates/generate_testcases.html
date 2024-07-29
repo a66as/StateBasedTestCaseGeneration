@@ -307,7 +307,7 @@
   });
 function submitCode(elementId) {
     var codeContent1 = document.getElementById(elementId).innerText;
-alert('OK to Confirm Running the code')
+alert('Press OK to confirm the action.')
     var formData = new FormData();
     formData.append('codeContent', codeContent1);
 
@@ -381,7 +381,7 @@ alert('OK to Confirm Running the code')
 
   function saveCode(elementId,loc) {
       var codeContent1 = document.getElementById(elementId).innerText;
-  alert('OK to Confirm Saving the Code.')
+  alert('Press OK to confirm saving the file.')
       var formData = new FormData();
       formData.append('codeContent', codeContent1);
       formData.append('fileName', loc);

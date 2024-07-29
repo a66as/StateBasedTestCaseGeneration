@@ -286,7 +286,7 @@
   });
 function submitCode(elementId) {
     var codeContent1 = document.getElementById(elementId).innerText;
-alert('OK to confirm running of UnitTests.java.')
+alert('Press OK to confirm running of UnitTests.java.')
     var formData = new FormData();
     formData.append('codeContent', codeContent1);
 
@@ -357,7 +357,7 @@ alert('OK to confirm running of UnitTests.java.')
 
   function saveCode(elementId,loc) {
       var codeContent1 = document.getElementById(elementId).innerText;
-  alert('Click Ok to Confirm Saving the code')
+  alert('Press OK to confirm saving the file.')
       var formData = new FormData();
       formData.append('codeContent', codeContent1);
       formData.append('fileName', loc);
