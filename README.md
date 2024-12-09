@@ -25,6 +25,9 @@
 * The app should be up and running, navigate to `http://localhost:8080/` in your browser
 * If you want to stop/start the app use `docker stop/start capsule_container`
 
+> [!NOTE]
+> Tutorial for students is [available](https://youtu.be/8nbEoI6xXMQ).
+
 
 
 
